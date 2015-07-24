@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60D21B61BA690082D157 /* AppDelegate.swift */; };
+		A18A60D51B61BA690082D157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60D41B61BA690082D157 /* ViewController.swift */; };
+		A18A60D71B61BA690082D157 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18A60D61B61BA690082D157 /* Images.xcassets */; };
+		A18A60DA1B61BA690082D157 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18A60D81B61BA690082D157 /* Main.storyboard */; };
+		A18A60E61B61BA690082D157 /* HushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60E51B61BA690082D157 /* HushTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A18A60E01B61BA690082D157 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18A60C51B61BA690082D157 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A18A60CC1B61BA690082D157;
+			remoteInfo = Hush;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A18A60CD1B61BA690082D157 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A18A60D11B61BA690082D157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A18A60D21B61BA690082D157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A18A60D41B61BA690082D157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A18A60D61B61BA690082D157 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A18A60D91B61BA690082D157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A18A60DF1B61BA690082D157 /* HushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A18A60E41B61BA690082D157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A18A60E51B61BA690082D157 /* HushTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A18A60CA1B61BA690082D157 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A18A60DC1B61BA690082D157 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A18A60C41B61BA690082D157 = {
+			isa = PBXGroup;
+			children = (
+				A18A60CF1B61BA690082D157 /* Hush */,
+				A18A60E21B61BA690082D157 /* HushTests */,
+				A18A60CE1B61BA690082D157 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A18A60CE1B61BA690082D157 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A18A60CD1B61BA690082D157 /* Hush.app */,
+				A18A60DF1B61BA690082D157 /* HushTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A18A60CF1B61BA690082D157 /* Hush */ = {
+			isa = PBXGroup;
+			children = (
+				A18A60D21B61BA690082D157 /* AppDelegate.swift */,
+				A18A60D41B61BA690082D157 /* ViewController.swift */,
+				A18A60D61B61BA690082D157 /* Images.xcassets */,
+				A18A60D81B61BA690082D157 /* Main.storyboard */,
+				A18A60D01B61BA690082D157 /* Supporting Files */,
+			);
+			path = Hush;
+			sourceTree = "<group>";
+		};
+		A18A60D01B61BA690082D157 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A18A60D11B61BA690082D157 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A18A60E21B61BA690082D157 /* HushTests */ = {
+			isa = PBXGroup;
+			children = (
+				A18A60E51B61BA690082D157 /* HushTests.swift */,
+				A18A60E31B61BA690082D157 /* Supporting Files */,
+			);
+			path = HushTests;
+			sourceTree = "<group>";
+		};
+		A18A60E31B61BA690082D157 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A18A60E41B61BA690082D157 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A18A60CC1B61BA690082D157 /* Hush */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A18A60E91B61BA690082D157 /* Build configuration list for PBXNativeTarget "Hush" */;
+			buildPhases = (
+				A18A60C91B61BA690082D157 /* Sources */,
+				A18A60CA1B61BA690082D157 /* Frameworks */,
+				A18A60CB1B61BA690082D157 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hush;
+			productName = Hush;
+			productReference = A18A60CD1B61BA690082D157 /* Hush.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A18A60DE1B61BA690082D157 /* HushTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A18A60EC1B61BA690082D157 /* Build configuration list for PBXNativeTarget "HushTests" */;
+			buildPhases = (
+				A18A60DB1B61BA690082D157 /* Sources */,
+				A18A60DC1B61BA690082D157 /* Frameworks */,
+				A18A60DD1B61BA690082D157 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A18A60E11B61BA690082D157 /* PBXTargetDependency */,
+			);
+			name = HushTests;
+			productName = HushTests;
+			productReference = A18A60DF1B61BA690082D157 /* HushTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A18A60C51B61BA690082D157 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Nathan Dinsmore";
+				TargetAttributes = {
+					A18A60CC1B61BA690082D157 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					A18A60DE1B61BA690082D157 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = A18A60CC1B61BA690082D157;
+					};
+				};
+			};
+			buildConfigurationList = A18A60C81B61BA690082D157 /* Build configuration list for PBXProject "Hush" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A18A60C41B61BA690082D157;
+			productRefGroup = A18A60CE1B61BA690082D157 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A18A60CC1B61BA690082D157 /* Hush */,
+				A18A60DE1B61BA690082D157 /* HushTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A18A60CB1B61BA690082D157 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A18A60D71B61BA690082D157 /* Images.xcassets in Resources */,
+				A18A60DA1B61BA690082D157 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A18A60DD1B61BA690082D157 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A18A60C91B61BA690082D157 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A18A60D51B61BA690082D157 /* ViewController.swift in Sources */,
+				A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A18A60DB1B61BA690082D157 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A18A60E61B61BA690082D157 /* HushTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A18A60E11B61BA690082D157 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A18A60CC1B61BA690082D157 /* Hush */;
+			targetProxy = A18A60E01B61BA690082D157 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A18A60D81B61BA690082D157 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A18A60D91B61BA690082D157 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A18A60E71B61BA690082D157 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A18A60E81B61BA690082D157 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A18A60EA1B61BA690082D157 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Hush/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A18A60EB1B61BA690082D157 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Hush/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A18A60ED1B61BA690082D157 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HushTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
+			};
+			name = Debug;
+		};
+		A18A60EE1B61BA690082D157 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HushTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A18A60C81B61BA690082D157 /* Build configuration list for PBXProject "Hush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A18A60E71B61BA690082D157 /* Debug */,
+				A18A60E81B61BA690082D157 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A18A60E91B61BA690082D157 /* Build configuration list for PBXNativeTarget "Hush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A18A60EA1B61BA690082D157 /* Debug */,
+				A18A60EB1B61BA690082D157 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A18A60EC1B61BA690082D157 /* Build configuration list for PBXNativeTarget "HushTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A18A60ED1B61BA690082D157 /* Debug */,
+				A18A60EE1B61BA690082D157 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A18A60C51B61BA690082D157 /* Project object */;
+}
