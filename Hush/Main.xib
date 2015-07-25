@@ -689,6 +689,9 @@ Gw
                                 <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                             </allowedInputSourceLocales>
                         </secureTextFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="zA8-KC-z45" id="YSp-i7-Tw7"/>
+                        </connections>
                     </secureTextField>
                 </subviews>
                 <constraints>

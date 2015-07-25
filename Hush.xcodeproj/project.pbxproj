@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A13BFCCA1B6381900016AF15 /* NSTextField+secure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCC91B6381900016AF15 /* NSTextField+secure.swift */; };
 		A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */; };
+		A13BFCCE1B6422A90016AF15 /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCD1B6422A90016AF15 /* Hasher.swift */; };
 		A14C7FB71B6358810047AC2B /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */; };
 		A14C7FB81B6358850047AC2B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C7FB51B63578C0047AC2B /* libz.tbd */; };
 		A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60D21B61BA690082D157 /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		A13BFCC91B6381900016AF15 /* NSTextField+secure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+secure.swift"; sourceTree = "<group>"; };
 		A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+checked.swift"; sourceTree = "<group>"; };
+		A13BFCCD1B6422A90016AF15 /* Hasher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hasher.swift; sourceTree = "<group>"; };
 		A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		A14C7FB51B63578C0047AC2B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A18A60CD1B61BA690082D157 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 				A13BFCC91B6381900016AF15 /* NSTextField+secure.swift */,
 				A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */,
 				A18A60D21B61BA690082D157 /* AppDelegate.swift */,
+				A13BFCCD1B6422A90016AF15 /* Hasher.swift */,
 				A18A60D61B61BA690082D157 /* Images.xcassets */,
 				A18A60F01B61BFBC0082D157 /* Main.xib */,
 				A18A60D01B61BA690082D157 /* Supporting Files */,
@@ -245,6 +248,7 @@
 				A18A81821B62C51300F21A2F /* HotKeys.m in Sources */,
 				A13BFCCA1B6381900016AF15 /* NSTextField+secure.swift in Sources */,
 				A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */,
+				A13BFCCE1B6422A90016AF15 /* Hasher.swift in Sources */,
 				A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
