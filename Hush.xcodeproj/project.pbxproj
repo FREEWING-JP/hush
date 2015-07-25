@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A13BFCCA1B6381900016AF15 /* NSTextField+secure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCC91B6381900016AF15 /* NSTextField+secure.swift */; };
+		A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */; };
+		A14C7FB71B6358810047AC2B /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */; };
+		A14C7FB81B6358850047AC2B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C7FB51B63578C0047AC2B /* libz.tbd */; };
 		A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60D21B61BA690082D157 /* AppDelegate.swift */; };
-		A18A60D51B61BA690082D157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60D41B61BA690082D157 /* ViewController.swift */; };
 		A18A60D71B61BA690082D157 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18A60D61B61BA690082D157 /* Images.xcassets */; };
-		A18A60DA1B61BA690082D157 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18A60D81B61BA690082D157 /* Main.storyboard */; };
 		A18A60E61B61BA690082D157 /* HushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60E51B61BA690082D157 /* HushTests.swift */; };
+		A18A60F11B61BFBC0082D157 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18A60F01B61BFBC0082D157 /* Main.xib */; };
+		A18A817E1B62BB8B00F21A2F /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18A817D1B62BB8B00F21A2F /* ApplicationServices.framework */; };
+		A18A81821B62C51300F21A2F /* HotKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A81811B62C51300F21A2F /* HotKeys.m */; };
+		A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,15 +31,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A13BFCC91B6381900016AF15 /* NSTextField+secure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+secure.swift"; sourceTree = "<group>"; };
+		A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+checked.swift"; sourceTree = "<group>"; };
+		A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
+		A14C7FB51B63578C0047AC2B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A18A60CD1B61BA690082D157 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18A60D11B61BA690082D157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A18A60D21B61BA690082D157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A18A60D41B61BA690082D157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A18A60D61B61BA690082D157 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A18A60D91B61BA690082D157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A18A60DF1B61BA690082D157 /* HushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18A60E41B61BA690082D157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A18A60E51B61BA690082D157 /* HushTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushTests.swift; sourceTree = "<group>"; };
+		A18A60EF1B61BF480082D157 /* Hush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hush.entitlements; sourceTree = "<group>"; };
+		A18A60F01B61BFBC0082D157 /* Main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
+		A18A817D1B62BB8B00F21A2F /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		A18A817F1B62C51300F21A2F /* Hush-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hush-Bridging-Header.h"; sourceTree = "<group>"; };
+		A18A81801B62C51300F21A2F /* HotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeys.h; sourceTree = "<group>"; };
+		A18A81811B62C51300F21A2F /* HotKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeys.m; sourceTree = "<group>"; };
+		A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEventFlags_.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +56,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14C7FB81B6358850047AC2B /* libz.tbd in Frameworks */,
+				A14C7FB71B6358810047AC2B /* libcommonCrypto.tbd in Frameworks */,
+				A18A817E1B62BB8B00F21A2F /* ApplicationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +78,9 @@
 				A18A60CF1B61BA690082D157 /* Hush */,
 				A18A60E21B61BA690082D157 /* HushTests */,
 				A18A60CE1B61BA690082D157 /* Products */,
+				A14C7FB51B63578C0047AC2B /* libz.tbd */,
+				A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */,
+				A18A817D1B62BB8B00F21A2F /* ApplicationServices.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,11 +96,17 @@
 		A18A60CF1B61BA690082D157 /* Hush */ = {
 			isa = PBXGroup;
 			children = (
+				A18A60EF1B61BF480082D157 /* Hush.entitlements */,
+				A18A81801B62C51300F21A2F /* HotKeys.h */,
+				A18A81811B62C51300F21A2F /* HotKeys.m */,
+				A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */,
+				A13BFCC91B6381900016AF15 /* NSTextField+secure.swift */,
+				A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */,
 				A18A60D21B61BA690082D157 /* AppDelegate.swift */,
-				A18A60D41B61BA690082D157 /* ViewController.swift */,
 				A18A60D61B61BA690082D157 /* Images.xcassets */,
-				A18A60D81B61BA690082D157 /* Main.storyboard */,
+				A18A60F01B61BFBC0082D157 /* Main.xib */,
 				A18A60D01B61BA690082D157 /* Supporting Files */,
+				A18A817F1B62C51300F21A2F /* Hush-Bridging-Header.h */,
 			);
 			path = Hush;
 			sourceTree = "<group>";
@@ -153,11 +180,17 @@
 		A18A60C51B61BA690082D157 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Nathan Dinsmore";
 				TargetAttributes = {
 					A18A60CC1B61BA690082D157 = {
 						CreatedOnToolsVersion = 6.4;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					A18A60DE1B61BA690082D157 = {
 						CreatedOnToolsVersion = 6.4;
@@ -189,8 +222,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A18A60F11B61BFBC0082D157 /* Main.xib in Resources */,
 				A18A60D71B61BA690082D157 /* Images.xcassets in Resources */,
-				A18A60DA1B61BA690082D157 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,8 +241,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A18A60D51B61BA690082D157 /* ViewController.swift in Sources */,
 				A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */,
+				A18A81821B62C51300F21A2F /* HotKeys.m in Sources */,
+				A13BFCCA1B6381900016AF15 /* NSTextField+secure.swift in Sources */,
+				A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */,
+				A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,17 +266,6 @@
 			targetProxy = A18A60E01B61BA690082D157 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A18A60D81B61BA690082D157 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A18A60D91B61BA690082D157 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A18A60E71B61BA690082D157 /* Debug */ = {
@@ -264,6 +289,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -327,10 +353,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Hush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hush/Hush-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -338,10 +372,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Hush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hush/Hush-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -360,6 +401,7 @@
 				);
 				INFOPLIST_FILE = HushTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
 			};
@@ -376,6 +418,7 @@
 				);
 				INFOPLIST_FILE = HushTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
 			};
@@ -400,6 +443,7 @@
 				A18A60EB1B61BA690082D157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A18A60EC1B61BA690082D157 /* Build configuration list for PBXNativeTarget "HushTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +452,7 @@
 				A18A60EE1B61BA690082D157 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
