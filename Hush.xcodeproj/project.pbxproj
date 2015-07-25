@@ -11,13 +11,10 @@
 		A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */; };
 		A13BFCCE1B6422A90016AF15 /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCD1B6422A90016AF15 /* Hasher.swift */; };
 		A13BFCD01B6425180016AF15 /* KeyboardEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCF1B6425180016AF15 /* KeyboardEmulator.swift */; };
-		A14C7FB71B6358810047AC2B /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */; };
-		A14C7FB81B6358850047AC2B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C7FB51B63578C0047AC2B /* libz.tbd */; };
 		A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60D21B61BA690082D157 /* AppDelegate.swift */; };
 		A18A60D71B61BA690082D157 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18A60D61B61BA690082D157 /* Images.xcassets */; };
 		A18A60E61B61BA690082D157 /* HushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60E51B61BA690082D157 /* HushTests.swift */; };
 		A18A60F11B61BFBC0082D157 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18A60F01B61BFBC0082D157 /* Main.xib */; };
-		A18A817E1B62BB8B00F21A2F /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18A817D1B62BB8B00F21A2F /* ApplicationServices.framework */; };
 		A18A81821B62C51300F21A2F /* HotKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A81811B62C51300F21A2F /* HotKeys.m */; };
 		A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */; };
 /* End PBXBuildFile section */
@@ -37,8 +34,6 @@
 		A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+checked.swift"; sourceTree = "<group>"; };
 		A13BFCCD1B6422A90016AF15 /* Hasher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hasher.swift; sourceTree = "<group>"; };
 		A13BFCCF1B6425180016AF15 /* KeyboardEmulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEmulator.swift; sourceTree = "<group>"; };
-		A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
-		A14C7FB51B63578C0047AC2B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A18A60CD1B61BA690082D157 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18A60D11B61BA690082D157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A18A60D21B61BA690082D157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +43,6 @@
 		A18A60E51B61BA690082D157 /* HushTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushTests.swift; sourceTree = "<group>"; };
 		A18A60EF1B61BF480082D157 /* Hush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hush.entitlements; sourceTree = "<group>"; };
 		A18A60F01B61BFBC0082D157 /* Main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
-		A18A817D1B62BB8B00F21A2F /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		A18A817F1B62C51300F21A2F /* Hush-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hush-Bridging-Header.h"; sourceTree = "<group>"; };
 		A18A81801B62C51300F21A2F /* HotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeys.h; sourceTree = "<group>"; };
 		A18A81811B62C51300F21A2F /* HotKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeys.m; sourceTree = "<group>"; };
@@ -60,9 +54,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A14C7FB81B6358850047AC2B /* libz.tbd in Frameworks */,
-				A14C7FB71B6358810047AC2B /* libcommonCrypto.tbd in Frameworks */,
-				A18A817E1B62BB8B00F21A2F /* ApplicationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,9 +73,6 @@
 				A18A60CF1B61BA690082D157 /* Hush */,
 				A18A60E21B61BA690082D157 /* HushTests */,
 				A18A60CE1B61BA690082D157 /* Products */,
-				A14C7FB51B63578C0047AC2B /* libz.tbd */,
-				A14C7FB31B6357860047AC2B /* libcommonCrypto.tbd */,
-				A18A817D1B62BB8B00F21A2F /* ApplicationServices.framework */,
 			);
 			sourceTree = "<group>";
 		};

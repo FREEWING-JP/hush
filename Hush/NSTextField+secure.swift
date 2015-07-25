@@ -1,12 +1,17 @@
 import Cocoa
 
+func print2(x: AnyObject?) {print(x)}
 extension NSTextField {
   var secure: Bool {
     get {return cell?.secure ?? false}
     set {
       guard newValue != secure else {return}
       let new = newValue ? NSSecureTextFieldCell() : NSTextFieldCell()
-      new.placeholderAttributedString = placeholderAttributedString
+      if let attributed = placeholderAttributedString {
+        new.placeholderAttributedString = attributed
+      } else {
+        new.placeholderString = placeholderString
+      }
       if allowsEditingTextAttributes {
         new.attributedStringValue = attributedStringValue
       } else {

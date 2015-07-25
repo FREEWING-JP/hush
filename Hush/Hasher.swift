@@ -1,12 +1,30 @@
 import Cocoa
 
-@objc class HashOptions : NSObject {
+@objc class HashOptions : NSObject, NSCoding {
   dynamic var length: Int = 16
   dynamic var requireDigit: Bool = true
   dynamic var requireSpecial: Bool = true
   dynamic var requireMixed: Bool = true
   dynamic var forbidSpecial: Bool = false
   dynamic var onlyDigits: Bool = false
+
+  required override init() {}
+  required init?(coder aDecoder: NSCoder) {
+    length = aDecoder.decodeIntegerForKey("length")
+    requireDigit = aDecoder.decodeBoolForKey("requireDigit")
+    requireSpecial = aDecoder.decodeBoolForKey("requireSpecial")
+    requireMixed = aDecoder.decodeBoolForKey("requireMixed")
+    forbidSpecial = aDecoder.decodeBoolForKey("forbidSpecial")
+    onlyDigits = aDecoder.decodeBoolForKey("onlyDigits")
+  }
+  func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodeInteger(length, forKey: "length")
+    aCoder.encodeBool(requireDigit, forKey: "requireDigit")
+    aCoder.encodeBool(requireSpecial, forKey: "requireSpecial")
+    aCoder.encodeBool(requireMixed, forKey: "requireMixed")
+    aCoder.encodeBool(forbidSpecial, forKey: "forbidSpecial")
+    aCoder.encodeBool(onlyDigits, forKey: "onlyDigits")
+  }
 }
 
 class Hasher : NSObject {

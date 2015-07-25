@@ -1,5 +1,4 @@
 import Cocoa
-import ApplicationServices
 
 var defaultsContext = 0
 let UIDefaults = ["revealTag", "revealHash"]
@@ -33,8 +32,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
   var optionsHeightConstraint: NSLayoutConstraint!
   var optionsHeight: CGFloat = 0
 
-  var eventHandler: AnyObject?
+  private var _optionsVisible: Bool = true
+}
 
+extension AppDelegate {
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.registerDefaults([
@@ -85,15 +86,68 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     for key in UIDefaults {
       defaults.removeObserver(self, forKeyPath: key, context: &defaultsContext)
     }
-    eventHandler.map({NSEvent.removeMonitor($0)})
+  }
+}
+
+extension AppDelegate {
+  @IBAction func updateHash(sender: AnyObject?) {
+    hashField.stringValue = generateHash() ?? ""
+  }
+  func generateHash() -> String? {
+    return Hasher(options: hashOptions).hash(tag: tagField.stringValue, pass: passField.stringValue)
   }
 
-  func windowDidBecomeMain(notification: NSNotification) {
-    print(notification)
-    if notification.object.flatMap({$0 as? NSPanel}) == preferencesWindow {
-      print("yay")
+  @IBAction func submit(sender: AnyObject?) {
+    guard let hash = generateHash() else {
+      hideDialog(self)
+      return
     }
+    saveDataForCurrentApp()
+    saveMasterPass()
+    hideDialog(self)
+    guard let es = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState) else {return}
+    KeyboardEmulator.replaceText(hash, eventSource: es)
   }
+
+  func saveDataForCurrentApp() {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let rememberTag = defaults.boolForKey("rememberTag")
+    let rememberOptions = defaults.boolForKey("rememberOptions")
+    guard rememberTag || rememberOptions else {return}
+
+    let ws = NSWorkspace.sharedWorkspace()
+    guard
+      let app = ws.menuBarOwningApplication,
+      let appName = app.localizedName,
+      let appID = app.bundleIdentifier else {return}
+
+    guard
+      let service = "Hush".dataUsingEncoding(NSUTF8StringEncoding),
+      let account = appID.dataUsingEncoding(NSUTF8StringEncoding),
+      let label = "Hush Tag: \(appName)".dataUsingEncoding(NSUTF8StringEncoding),
+      let tag = tagField.stringValue.dataUsingEncoding(NSUTF8StringEncoding) else {return}
+
+    var item: SecKeychainItem?
+    if SecKeychainFindGenericPassword(nil, UInt32(service.length), UnsafePointer(service.bytes), UInt32(account.length), UnsafePointer(account.bytes), nil, nil, &item) != noErr {
+      guard SecKeychainAddGenericPassword(nil, UInt32(service.length), UnsafePointer(service.bytes), UInt32(account.length), UnsafePointer(account.bytes), 0, nil, &item) == noErr else {return}
+    }
+    guard let it = item else {return}
+    let options = rememberOptions ? NSKeyedArchiver.archivedDataWithRootObject(hashOptions) : NSData(bytes: nil, length: 0)
+
+    var attrs = [
+      SecKeychainAttribute(tag: SecItemAttr.LabelItemAttr.rawValue, length: UInt32(label.length), data: UnsafeMutablePointer(label.bytes)),
+      SecKeychainAttribute(tag: SecItemAttr.GenericItemAttr.rawValue, length: UInt32(options.length), data: UnsafeMutablePointer(options.bytes)),
+    ]
+    var list = SecKeychainAttributeList(count: UInt32(attrs.count), attr: &attrs)
+    SecKeychainItemModifyAttributesAndData(it, &list, rememberTag ? UInt32(tag.length) : 0, rememberTag ? tag.bytes : nil)
+  }
+
+  func saveMasterPass() {
+    guard NSUserDefaults.standardUserDefaults().boolForKey("rememberPass") else {return}
+  }
+}
+
+extension AppDelegate {
   func windowShouldClose(sender: AnyObject) -> Bool {
     if sender as? NSPanel == window {
       hideDialog(sender)
@@ -105,28 +159,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     hideDialog(self)
   }
 
-  func monitor(event: NSEvent!) {
-    print("\(event.charactersIgnoringModifiers) \(event.modifierFlags)")
-    guard event.charactersIgnoringModifiers == "h" && event.modifierFlags.contains([NSEventModifierFlags.CommandKeyMask, NSEventModifierFlags.ControlKeyMask, NSEventModifierFlags.AlternateKeyMask]) else {return}
-    showDialog(self)
-  }
-
   @IBAction func showDialog(sender: AnyObject?) {
-    // TODO: remember tags per app (by preference)
     let defaults = NSUserDefaults.standardUserDefaults()
-    let shouldGuess = defaults.boolForKey("guessTag")
 
-    if shouldGuess {
-      let ws = NSWorkspace.sharedWorkspace()
-      if let app = ws.menuBarOwningApplication,
-        let name = app.localizedName {
-          // just spaces
-          // let tag = name.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
+    if defaults.boolForKey("rememberTag") {
+      // TODO: restore tag from keychain
+    }
+    if defaults.boolForKey("rememberOptions") {
+      // TODO: restore options from keychain
+    }
+    if defaults.boolForKey("rememberPass") {
+      // TODO: restore passphrase from keychain
+    }
+    if tagField.stringValue == "" {
+      if defaults.boolForKey("guessTag") {
+        let ws = NSWorkspace.sharedWorkspace()
+        if let app = ws.menuBarOwningApplication,
+          let name = app.localizedName {
+            // just spaces
+            // let tag = name.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
 
-          // kill EVERYTHING (except letters and numbers)
-          let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
-          let tag = (name.lowercaseString.componentsSeparatedByCharactersInSet(set) as NSArray).componentsJoinedByString("")
-          tagField.stringValue = tag
+            // kill EVERYTHING (except letters and numbers)
+            let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
+            let tag = (name.lowercaseString.componentsSeparatedByCharactersInSet(set) as NSArray).componentsJoinedByString("")
+            tagField.stringValue = tag
+        }
       }
     }
     if window.screen != NSScreen.mainScreen(),
@@ -135,7 +192,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let win = window.frame
         window.setFrame(win.rectByOffsetting(dx: scr.minX - old.minX, dy: scr.minX - old.minX), display: false)
     }
-    window.makeFirstResponder(shouldGuess ? passField : hashField)
+    window.makeFirstResponder(tagField.stringValue == "" ? tagField : passField)
     window.makeKeyAndOrderFront(sender)
     NSApplication.sharedApplication().activateIgnoringOtherApps(true)
   }
@@ -143,30 +200,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     NSApplication.sharedApplication().hide(sender)
     passField.stringValue = ""
     hashField.stringValue = ""
+    tagField.stringValue = ""
   }
 
-  @IBAction func toggleOptions(sender: AnyObject?) {
-    optionsVisible = !optionsVisible
-  }
+}
 
+extension AppDelegate {
   override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
     if menuItem.action == "toggleOptions:" {
       menuItem.title = optionsVisible ? "Hide Options" : "Show Options"
     }
     return true
-//    return super.validateMenuItem(menuItem)
+  }
+}
+
+extension AppDelegate {
+  @IBAction func toggleOptions(sender: AnyObject?) {
+    optionsVisible = !optionsVisible
   }
 
-  @IBAction func pressDefaultsButton(sender: AnyObject?) {
-    guard let button = sender as? NSSegmentedControl else {return}
-    if button.selectedSegment == 0 {
-      updateDefaultsFromOptions(sender)
-    } else {
-      resetToDefaults(sender)
-    }
-  }
-
-  private var _optionsVisible: Bool = true
   var optionsVisible: Bool {
     get {return _optionsVisible}
     set {setOptionsVisible(newValue)}
@@ -182,8 +234,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
       // TODO don't do this while animating
       NSAnimationContext.runAnimationGroup({context in
         self.updateOptionsConstraints(true)
-      }) {
-        self.updateOptionsConstraintsAfterAnimation()
+        }) {
+          self.updateOptionsConstraintsAfterAnimation()
       }
     } else {
       self.updateOptionsConstraints(false)
@@ -212,15 +264,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
       optionsBox.hidden = true
     }
   }
+}
 
-  @IBAction func applyUIPreferences(sender: AnyObject?) {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    tagField.secure = !defaults.boolForKey("revealTag")
-    let revealHash = defaults.boolForKey("revealHash")
-    hashField.secure = !revealHash
-    hashField.font = revealHash ? NSFont.userFixedPitchFontOfSize(11) : NSFont.systemFontOfSize(NSFont.systemFontSize())
-  }
-
+extension AppDelegate {
   @IBAction func resetToDefaults(sender: AnyObject?) {
     let defaults = NSUserDefaults.standardUserDefaults()
     hashOptions.length = defaults.integerForKey("length")
@@ -240,34 +286,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     defaults.setBool(hashOptions.forbidSpecial, forKey: "forbidSpecial")
     defaults.setInteger(hashOptions.length, forKey: "length")
   }
+
+  @IBAction func updateOptions(sender: AnyObject?) {
+    updateHash(sender)
+    updateOptionState()
+  }
   func updateOptionState() {
     requireDigit.enabled = !hashOptions.onlyDigits
     requireSpecial.enabled = !hashOptions.onlyDigits && !hashOptions.forbidSpecial
     requireMixed.enabled = !hashOptions.onlyDigits
     forbidSpecial.enabled = !hashOptions.onlyDigits
   }
-  @IBAction func updateOptions(sender: AnyObject?) {
-    updateHash(sender)
-    updateOptionState()
-  }
 
-  @IBAction func updateHash(sender: AnyObject?) {
-    hashField.stringValue = generateHash() ?? ""
-  }
-
-  @IBAction func submit(sender: AnyObject?) {
-    guard let hash = generateHash() else {
-      hideDialog(self)
-      return
+  @IBAction func pressDefaultsButton(sender: AnyObject?) {
+    guard let button = sender as? NSSegmentedControl else {return}
+    if button.selectedSegment == 0 {
+      updateDefaultsFromOptions(sender)
+    } else {
+      resetToDefaults(sender)
     }
-    saveOptionsForCurrentApp()
-    hideDialog(self)
-    guard let es = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState) else {return}
-    KeyboardEmulator.replaceText(hash, eventSource: es)
   }
+}
 
-  func saveOptionsForCurrentApp() {
-    // TODO: save options for current app
+extension AppDelegate : NSTextFieldDelegate {
+  override func controlTextDidChange(obj: NSNotification) {
+    updateHash(obj.object)
   }
 }
 
@@ -279,16 +322,12 @@ extension AppDelegate {
       return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
     }
   }
-}
 
-extension AppDelegate {
-  func generateHash() -> String? {
-    return Hasher(options: hashOptions).hash(tag: tagField.stringValue, pass: passField.stringValue)
-  }
-}
-
-extension AppDelegate : NSTextFieldDelegate {
-  override func controlTextDidChange(obj: NSNotification) {
-    updateHash(obj.object)
+  @IBAction func applyUIPreferences(sender: AnyObject?) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    tagField.secure = !defaults.boolForKey("revealTag")
+    let revealHash = defaults.boolForKey("revealHash")
+    hashField.secure = !revealHash
+    hashField.font = revealHash ? NSFont.userFixedPitchFontOfSize(11) : NSFont.systemFontOfSize(NSFont.systemFontSize())
   }
 }
