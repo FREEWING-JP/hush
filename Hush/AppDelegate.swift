@@ -13,7 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
   @IBOutlet weak var passField: NSSecureTextField!
   @IBOutlet weak var hashField: NSSecureTextField!
 
-  @IBOutlet weak var lengthButton: NSPopUpButton!
+  @IBOutlet weak var hashOptions: HashOptions!
 
   @IBOutlet weak var requireDigit: NSButton!
   @IBOutlet weak var requireSpecial: NSButton!
@@ -223,28 +223,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
   @IBAction func resetToDefaults(sender: AnyObject?) {
     let defaults = NSUserDefaults.standardUserDefaults()
-    requireDigit.checked = defaults.boolForKey("requireDigit")
-    requireSpecial.checked = defaults.boolForKey("requireSpecial")
-    requireMixed.checked = defaults.boolForKey("requireMixed")
-    onlyDigits.checked = defaults.boolForKey("onlyDigits")
-    forbidSpecial.checked = defaults.boolForKey("forbidSpecial")
-    lengthButton.selectItemWithTag(defaults.integerForKey("length"))
+    hashOptions.length = defaults.integerForKey("length")
+    hashOptions.requireDigit = defaults.boolForKey("requireDigit")
+    hashOptions.requireSpecial = defaults.boolForKey("requireSpecial")
+    hashOptions.requireMixed = defaults.boolForKey("requireMixed")
+    hashOptions.onlyDigits = defaults.boolForKey("onlyDigits")
+    hashOptions.forbidSpecial = defaults.boolForKey("forbidSpecial")
     updateOptionState()
   }
   @IBAction func updateDefaultsFromOptions(sender: AnyObject?) {
     let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setBool(requireDigit.checked, forKey: "requireDigit")
-    defaults.setBool(requireSpecial.checked, forKey: "requireSpecial")
-    defaults.setBool(requireMixed.checked, forKey: "requireMixed")
-    defaults.setBool(onlyDigits.checked, forKey: "onlyDigits")
-    defaults.setBool(forbidSpecial.checked, forKey: "forbidSpecial")
-    defaults.setInteger(lengthButton.selectedTag(), forKey: "length")
+    defaults.setBool(hashOptions.requireDigit, forKey: "requireDigit")
+    defaults.setBool(hashOptions.requireSpecial, forKey: "requireSpecial")
+    defaults.setBool(hashOptions.requireMixed, forKey: "requireMixed")
+    defaults.setBool(hashOptions.onlyDigits, forKey: "onlyDigits")
+    defaults.setBool(hashOptions.forbidSpecial, forKey: "forbidSpecial")
+    defaults.setInteger(hashOptions.length, forKey: "length")
   }
   func updateOptionState() {
-    requireDigit.enabled = !onlyDigits.checked
-    requireSpecial.enabled = !onlyDigits.checked && !forbidSpecial.checked
-    requireMixed.enabled = !onlyDigits.checked
-    forbidSpecial.enabled = !onlyDigits.checked
+    requireDigit.enabled = !hashOptions.onlyDigits
+    requireSpecial.enabled = !hashOptions.onlyDigits && !hashOptions.forbidSpecial
+    requireMixed.enabled = !hashOptions.onlyDigits
+    forbidSpecial.enabled = !hashOptions.onlyDigits
   }
   @IBAction func updateOptions(sender: AnyObject?) {
     updateHash(sender)
@@ -263,11 +263,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     saveOptionsForCurrentApp()
     hideDialog(self)
     guard let es = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState) else {return}
-    replaceText(hash, eventSource: es)
+    KeyboardEmulator.replaceText(hash, eventSource: es)
   }
 
   func saveOptionsForCurrentApp() {
-
+    // TODO: save options for current app
   }
 }
 
@@ -283,76 +283,12 @@ extension AppDelegate {
 
 extension AppDelegate {
   func generateHash() -> String? {
-    let options = Hasher.Options(
-      length: lengthButton.selectedTag(),
-      requireDigit: requireDigit.checked,
-      requireSpecial: requireSpecial.checked,
-      requireMixed: requireMixed.checked,
-      forbidSpecial: forbidSpecial.checked,
-      onlyDigits: onlyDigits.checked
-    )
-    return Hasher(options: options).hash(tag: tagField.stringValue, pass: passField.stringValue)
+    return Hasher(options: hashOptions).hash(tag: tagField.stringValue, pass: passField.stringValue)
   }
 }
 
 extension AppDelegate : NSTextFieldDelegate {
   override func controlTextDidChange(obj: NSNotification) {
     updateHash(obj.object)
-  }
-}
-
-extension AppDelegate {
-  func replaceText(text: String, eventSource es: CGEventSourceRef) {
-    selectAll(eventSource: es)
-    NSOperationQueue.mainQueue().addOperationWithBlock {self.typeText(text, eventSource: es)}
-  }
-  func typeText(text: String, eventSource es: CGEventSourceRef) {
-    for char in text.utf16 {
-      self.pressAndReleaseChar(char, eventSource: es)
-    }
-  }
-  func deleteAll(eventSource es: CGEventSourceRef) {
-    selectAll(eventSource: es)
-    NSOperationQueue.mainQueue().addOperationWithBlock {
-      self.pressAndReleaseKey(CGKeyCode(kVK_Delete), eventSource: es)
-    }
-  }
-  func selectAll(eventSource es: CGEventSourceRef) {
-    pressKey(CGKeyCode(kVK_Command), eventSource: es)
-    pressAndReleaseKey(CGKeyCode(kVK_ANSI_A), flags: CGEventFlags_.Command, eventSource: es)
-    releaseKey(CGKeyCode(kVK_Command), eventSource: es)
-  }
-
-  func pressAndReleaseChar(char: UniChar, flags: CGEventFlags_ = [], eventSource es: CGEventSourceRef) {
-    pressChar(char, flags: flags, eventSource: es)
-    releaseChar(char, flags: flags, eventSource: es)
-  }
-  func pressChar(var char: UniChar, keyDown: Bool = true, flags: CGEventFlags_ = [], eventSource es: CGEventSourceRef) {
-    let event = CGEventCreateKeyboardEvent(es, 0, keyDown)
-    if !flags.isEmpty {
-      let flags = CGEventFlags(rawValue: UInt64(flags.rawValue))!
-      CGEventSetFlags(event, flags)
-    }
-    CGEventKeyboardSetUnicodeString(event, 1, &char)
-    CGEventPost(CGEventTapLocation.CGHIDEventTap, event)
-  }
-  func releaseChar(char: UniChar, flags: CGEventFlags_ = [], eventSource es: CGEventSourceRef) {
-    pressChar(char, keyDown: false, flags: flags, eventSource: es)
-  }
-
-  func pressAndReleaseKey(key: CGKeyCode, flags: CGEventFlags_ = [], eventSource es: CGEventSourceRef) {
-    pressKey(key, flags: flags, eventSource: es)
-    releaseKey(key, flags: flags, eventSource: es)
-  }
-  func pressKey(key: CGKeyCode, keyDown: Bool = true, flags: CGEventFlags_ = [], eventSource es: CGEventSourceRef) {
-    let event = CGEventCreateKeyboardEvent(es, key, keyDown)
-    if !flags.isEmpty {
-      let flags = CGEventFlags(rawValue: UInt64(flags.rawValue))!
-      CGEventSetFlags(event, flags)
-    }
-    CGEventPost(CGEventTapLocation.CGHIDEventTap, event)
-  }
-  func releaseKey(key: CGKeyCode, flags: CGEventFlags_ = [], eventSource es: CGEventSourceRef) {
-    pressKey(key, keyDown: false, flags: flags, eventSource: es)
   }
 }

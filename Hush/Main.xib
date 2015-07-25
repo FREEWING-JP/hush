@@ -12,11 +12,12 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="X6c-4g-ys0" customClass="HashOptions" customModule="Hush" customModuleProvider="target"/>
         <customObject id="zA8-KC-z45" customClass="AppDelegate" customModule="Hush" customModuleProvider="target">
             <connections>
                 <outlet property="forbidSpecial" destination="j9s-O9-nfx" id="BnE-3Y-Sot"/>
                 <outlet property="hashField" destination="zbk-5g-5Ko" id="s1L-pw-scE"/>
-                <outlet property="lengthButton" destination="e9B-ui-0ph" id="fU7-4x-TuA"/>
+                <outlet property="hashOptions" destination="X6c-4g-ys0" id="Uw4-yN-hT5"/>
                 <outlet property="onlyDigits" destination="qUU-gF-d97" id="9Db-4k-eqK"/>
                 <outlet property="optionsBottomConstraint" destination="tdr-yr-Xl6" id="Sg0-oL-ivQ"/>
                 <outlet property="optionsBox" destination="fsX-4T-s0I" id="HGe-vr-EQK"/>
@@ -481,6 +482,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="6j4-mb-Wls"/>
+                                        <binding destination="X6c-4g-ys0" name="value" keyPath="self.requireDigit" id="0nq-x8-N3x"/>
                                     </connections>
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="Y1G-GD-5E7">
@@ -494,6 +496,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="swx-zH-3fN"/>
+                                        <binding destination="X6c-4g-ys0" name="value" keyPath="self.requireSpecial" id="nLR-9q-3t5"/>
                                     </connections>
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="UuI-dE-PIR">
@@ -507,6 +510,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="5mN-WP-u2W"/>
+                                        <binding destination="X6c-4g-ys0" name="value" keyPath="self.requireMixed" id="gd2-MM-Xde"/>
                                     </connections>
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="j9s-O9-nfx">
@@ -520,6 +524,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="wYt-n8-MNp"/>
+                                        <binding destination="X6c-4g-ys0" name="value" keyPath="self.forbidSpecial" id="t6H-5a-pcG"/>
                                     </connections>
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="qUU-gF-d97">
@@ -533,6 +538,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="PBR-90-SYF"/>
+                                        <binding destination="X6c-4g-ys0" name="value" keyPath="self.onlyDigits" id="7SA-dg-MRr"/>
                                     </connections>
                                 </button>
                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e9B-ui-0ph">
@@ -560,6 +566,9 @@
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
+                                    <connections>
+                                        <binding destination="X6c-4g-ys0" name="selectedTag" keyPath="self.length" id="tea-aI-c2B"/>
+                                    </connections>
                                 </popUpButton>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4ER-cB-sTW">
                                     <rect key="frame" x="-2" y="54" width="82" height="17"/>

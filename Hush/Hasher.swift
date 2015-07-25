@@ -1,17 +1,17 @@
 import Cocoa
 
-class Hasher {
-  struct Options {
-    let length: Int
-    let requireDigit: Bool
-    let requireSpecial: Bool
-    let requireMixed: Bool
-    let forbidSpecial: Bool
-    let onlyDigits: Bool
-  }
+@objc class HashOptions : NSObject {
+  dynamic var length: Int = 16
+  dynamic var requireDigit: Bool = true
+  dynamic var requireSpecial: Bool = true
+  dynamic var requireMixed: Bool = true
+  dynamic var forbidSpecial: Bool = false
+  dynamic var onlyDigits: Bool = false
+}
 
-  var options: Options
-  init(options: Options) {
+class Hasher : NSObject {
+  var options: HashOptions
+  init(options: HashOptions) {
     self.options = options
   }
 
