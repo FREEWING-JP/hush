@@ -2,7 +2,7 @@ import Cocoa
 
 var defaultsContext = 0
 let UIDefaults = ["revealTag", "revealHash"]
-let allDefaults = ["guessTag", "rememberTag", "rememberOptions", "rememberPass"] + UIDefaults
+let allDefaults = ["enableLoginItem", "guessTag", "rememberTag", "rememberOptions", "rememberPass"] + UIDefaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
@@ -26,7 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
   var optionsHeightConstraint: NSLayoutConstraint!
   var optionsHeight: CGFloat = 0
 
-  private var _optionsVisible: Bool = true
+  private var _optionsVisible = true
+  private var animatingOptions = false
 
   @IBOutlet weak var securityButton: NSPopUpButton!
 }
@@ -42,6 +43,8 @@ extension AppDelegate {
       "requireMixed": true,
       "onlyDigits": false,
       "forbidSpecial": false,
+
+      "enableLoginItem": true,
       "guessTag": true,
       "rememberTag": true,
       "rememberOptions": true,
@@ -52,7 +55,7 @@ extension AppDelegate {
     for key in allDefaults {
       defaults.addObserver(self, forKeyPath: key, options: [], context: &defaultsContext)
     }
-    // TODO: set login item on first run / add a preference for this
+    updateLoginItem()
 
     // use a monospace font so you can tell the difference between l and I and O and 0 without pixel counting
     hashField.placeholderAttributedString = NSAttributedString(string: hashField.placeholderString!, attributes: [
@@ -74,8 +77,10 @@ extension AppDelegate {
     if let o = defaults.objectForKey("optionsVisible") as? NSNumber {setOptionsVisible(o.boolValue, animate: false)}
     applyUIPreferences(self)
     resetToDefaults(self)
-    window.layoutIfNeeded()
-    showDialog(self)
+
+    if !Process.arguments.contains("autostart") {
+      showDialog(self)
+    }
   }
   func applicationWillTerminate(aNotification: NSNotification) {
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -267,7 +272,11 @@ extension AppDelegate {
 
 extension AppDelegate {
   @IBAction func toggleOptions(sender: AnyObject?) {
-    optionsVisible = !optionsVisible
+    if animatingOptions {
+      optionsButton.checked = optionsVisible
+    } else {
+      optionsVisible = !optionsVisible
+    }
   }
 
   var optionsVisible: Bool {
@@ -282,11 +291,12 @@ extension AppDelegate {
     NSUserDefaults.standardUserDefaults().setBool(value, forKey: "optionsVisible")
 
     if (animate) {
-      // TODO don't do this while animating
+      animatingOptions = true
       NSAnimationContext.runAnimationGroup({context in
         self.updateOptionsConstraints(true)
         }) {
           self.updateOptionsConstraintsAfterAnimation()
+          self.animatingOptions = false
       }
     } else {
       self.updateOptionsConstraints(false)
@@ -359,14 +369,22 @@ extension AppDelegate : NSTextFieldDelegate {
 
 extension AppDelegate {
   override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-    if context == &defaultsContext {
-      if (UIDefaults.contains(keyPath!)) {
+    if context == &defaultsContext, let keyPath = keyPath {
+      if (UIDefaults.contains(keyPath)) {
         applyUIPreferences(object)
       }
-      updateSecurityButton()
+      if (keyPath == "enableLoginItem") {
+        updateLoginItem()
+      } else {
+        updateSecurityButton()
+      }
     } else {
       return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
     }
+  }
+
+  func updateLoginItem() {
+    SMLoginItemSetEnabled("io.github.nathan.HushStartup", NSUserDefaults.standardUserDefaults().boolForKey("enableLoginItem") ? 1 : 0)
   }
 
   func updateSecurityButton() {

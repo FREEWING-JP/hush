@@ -419,7 +419,7 @@
         <window title="Hush" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Hush" animationBehavior="default" id="Sxe-1A-VzL" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
-            <rect key="contentRect" x="1995" y="251" width="413" height="328"/>
+            <rect key="contentRect" x="10" y="10" width="413" height="328"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="m8H-ee-23x">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="328"/>
@@ -759,10 +759,10 @@ Gw
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="jzf-vL-jKR" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
-            <rect key="contentRect" x="120" y="64" width="458" height="240"/>
+            <rect key="contentRect" x="120" y="64" width="458" height="269"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="Qed-cU-Ih6">
-                <rect key="frame" x="0.0" y="0.0" width="458" height="240"/>
+                <rect key="frame" x="0.0" y="0.0" width="458" height="269"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DOX-EX-o9f">
@@ -925,10 +925,24 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="RuI-9j-A0J">
+                        <rect key="frame" x="166" y="233" width="189" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="HhP-ye-juZ"/>
+                        </constraints>
+                        <buttonCell key="cell" type="check" title="Start Hush when logging in" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="SY0-eM-D5y">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="MBb-AG-Tzx" name="value" keyPath="values.enableLoginItem" id="xS5-Z5-FBT"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="b7b-qK-fCn" firstAttribute="leading" secondItem="bgx-mn-LBS" secondAttribute="trailing" constant="8" id="3FO-fD-yf7"/>
                     <constraint firstItem="kkZ-Mt-CUU" firstAttribute="leading" secondItem="DOX-EX-o9f" secondAttribute="trailing" constant="8" id="3Yf-bt-5NY"/>
+                    <constraint firstItem="kkZ-Mt-CUU" firstAttribute="top" secondItem="RuI-9j-A0J" secondAttribute="bottom" constant="14" id="3nA-rO-nj4"/>
                     <constraint firstItem="eem-OW-xUd" firstAttribute="leading" secondItem="XMl-gm-uE9" secondAttribute="trailing" constant="8" id="3yI-nU-FLP"/>
                     <constraint firstItem="DOX-EX-o9f" firstAttribute="trailing" secondItem="I0W-TC-4al" secondAttribute="trailing" id="5Hf-8V-FqF"/>
                     <constraint firstItem="b7b-qK-fCn" firstAttribute="top" secondItem="aC4-SP-rFg" secondAttribute="bottom" constant="14" id="6CQ-mD-M67"/>
@@ -944,7 +958,6 @@ Gw
                     <constraint firstItem="F7o-X6-6mv" firstAttribute="trailing" secondItem="DOX-EX-o9f" secondAttribute="trailing" id="G5K-QS-UwG"/>
                     <constraint firstItem="X17-6G-HNd" firstAttribute="leading" secondItem="3jW-HB-1Pl" secondAttribute="trailing" constant="8" id="IVF-hw-mnA"/>
                     <constraint firstItem="onP-rG-5xZ" firstAttribute="baseline" secondItem="I0W-TC-4al" secondAttribute="baseline" id="LBj-Ff-irC"/>
-                    <constraint firstItem="DOX-EX-o9f" firstAttribute="top" secondItem="Qed-cU-Ih6" secondAttribute="top" constant="20" id="N8U-9G-Qoy"/>
                     <constraint firstItem="bgx-mn-LBS" firstAttribute="trailing" secondItem="DOX-EX-o9f" secondAttribute="trailing" id="OyO-sP-NFu"/>
                     <constraint firstItem="aC4-SP-rFg" firstAttribute="leading" secondItem="kkZ-Mt-CUU" secondAttribute="leading" id="Ptl-fn-QPF"/>
                     <constraint firstItem="b7b-qK-fCn" firstAttribute="baseline" secondItem="bgx-mn-LBS" secondAttribute="baseline" id="Vry-cl-xne"/>
@@ -958,15 +971,17 @@ Gw
                     <constraint firstItem="onP-rG-5xZ" firstAttribute="top" secondItem="kkZ-Mt-CUU" secondAttribute="bottom" constant="14" id="lUX-2l-eMX"/>
                     <constraint firstItem="X17-6G-HNd" firstAttribute="baseline" secondItem="3jW-HB-1Pl" secondAttribute="baseline" id="nJQ-Nb-4oy"/>
                     <constraint firstItem="3jW-HB-1Pl" firstAttribute="top" secondItem="XMl-gm-uE9" secondAttribute="bottom" constant="6" id="nyy-HU-lkv"/>
+                    <constraint firstItem="RuI-9j-A0J" firstAttribute="top" secondItem="Qed-cU-Ih6" secondAttribute="top" constant="20" id="qRE-a7-Egn"/>
                     <constraint firstItem="b7b-qK-fCn" firstAttribute="leading" secondItem="kkZ-Mt-CUU" secondAttribute="leading" id="qbk-n9-qUd"/>
                     <constraint firstItem="tJU-f4-oo6" firstAttribute="top" secondItem="b7b-qK-fCn" secondAttribute="bottom" constant="6" id="uPD-1E-7gO"/>
+                    <constraint firstItem="kkZ-Mt-CUU" firstAttribute="leading" secondItem="RuI-9j-A0J" secondAttribute="leading" id="vl4-de-hJP"/>
                     <constraint firstItem="kkZ-Mt-CUU" firstAttribute="baseline" secondItem="DOX-EX-o9f" secondAttribute="baseline" id="zJQ-Bt-zmK"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="zA8-KC-z45" id="58I-hw-RUZ"/>
             </connections>
-            <point key="canvasLocation" x="70" y="728"/>
+            <point key="canvasLocation" x="70" y="738.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="MBb-AG-Tzx"/>
     </objects>
