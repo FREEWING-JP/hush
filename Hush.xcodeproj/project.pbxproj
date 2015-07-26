@@ -21,7 +21,7 @@
 		A18A60E61B61BA690082D157 /* HushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60E51B61BA690082D157 /* HushTests.swift */; };
 		A18A60F11B61BFBC0082D157 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18A60F01B61BFBC0082D157 /* Main.xib */; };
 		A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */; };
-		A1E9BA781B64ADEE0086536B /* HotKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9BA771B64ADEE0086536B /* HotKeys.swift */; };
+		A1E9BA781B64ADEE0086536B /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9BA771B64ADEE0086536B /* HotKey.swift */; };
 		A1FF80591B6484B2005C5B62 /* Assets.sketch in Resources */ = {isa = PBXBuildFile; fileRef = A1FF80581B6484B2005C5B62 /* Assets.sketch */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +69,7 @@
 		A18A60F01B61BFBC0082D157 /* Main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
 		A18A817F1B62C51300F21A2F /* Hush-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hush-Bridging-Header.h"; sourceTree = "<group>"; };
 		A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEventFlags_.swift; sourceTree = "<group>"; };
-		A1E9BA771B64ADEE0086536B /* HotKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotKeys.swift; sourceTree = "<group>"; };
+		A1E9BA771B64ADEE0086536B /* HotKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
 		A1FF80581B6484B2005C5B62 /* Assets.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = Assets.sketch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,7 +146,7 @@
 				A18A60D21B61BA690082D157 /* AppDelegate.swift */,
 				A13BFCCD1B6422A90016AF15 /* Hasher.swift */,
 				A13BFCCF1B6425180016AF15 /* KeyboardEmulator.swift */,
-				A1E9BA771B64ADEE0086536B /* HotKeys.swift */,
+				A1E9BA771B64ADEE0086536B /* HotKey.swift */,
 				A18A60D61B61BA690082D157 /* Images.xcassets */,
 				A18A60F01B61BFBC0082D157 /* Main.xib */,
 				A18A60D01B61BA690082D157 /* Supporting Files */,
@@ -342,7 +342,7 @@
 				A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */,
 				A13BFCCE1B6422A90016AF15 /* Hasher.swift in Sources */,
 				A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */,
-				A1E9BA781B64ADEE0086536B /* HotKeys.swift in Sources */,
+				A1E9BA781B64ADEE0086536B /* HotKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

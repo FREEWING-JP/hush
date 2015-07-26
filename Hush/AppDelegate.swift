@@ -28,6 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
   private var _optionsVisible = true
   private var animatingOptions = false
+  private var hotKey: HotKey?
 
   @IBOutlet weak var securityButton: NSPopUpButton!
 }
@@ -68,7 +69,7 @@ extension AppDelegate {
     optionsSideConstraint = NSLayoutConstraint(item: optionsBox, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: window.contentView, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 20)
     self.window.contentView.addConstraint(optionsHeightConstraint)
 
-    HotKeys.registerHotKey(UInt32(kVK_ANSI_H), modifiers: UInt32(cmdKey|optionKey|controlKey), block: {
+    hotKey = HotKey.register(UInt32(kVK_ANSI_H), modifiers: UInt32(cmdKey|optionKey|controlKey), block: {
       self.showDialog(self)
     })
 
@@ -87,6 +88,7 @@ extension AppDelegate {
     for key in UIDefaults {
       defaults.removeObserver(self, forKeyPath: key, context: &defaultsContext)
     }
+    if let hk = hotKey {hk.unregister()}
   }
 }
 
