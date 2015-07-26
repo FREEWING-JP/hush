@@ -14,10 +14,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="zA8-KC-z45" userLabel="App Delegate" customClass="AppDelegate" customModule="Hush" customModuleProvider="target">
             <connections>
-                <outlet property="forbidSpecial" destination="j9s-O9-nfx" id="BnE-3Y-Sot"/>
                 <outlet property="hashField" destination="zbk-5g-5Ko" id="s1L-pw-scE"/>
                 <outlet property="hashOptions" destination="X6c-4g-ys0" id="Uw4-yN-hT5"/>
-                <outlet property="onlyDigits" destination="qUU-gF-d97" id="9Db-4k-eqK"/>
                 <outlet property="optionsBottomConstraint" destination="tdr-yr-Xl6" id="Sg0-oL-ivQ"/>
                 <outlet property="optionsBox" destination="fsX-4T-s0I" id="HGe-vr-EQK"/>
                 <outlet property="optionsButton" destination="msa-GX-xf2" id="uFK-oj-EsY"/>
@@ -25,9 +23,6 @@
                 <outlet property="optionsMarginTopConstraint" destination="dJa-Mb-FQE" id="pTG-3R-PJV"/>
                 <outlet property="passField" destination="tws-0n-HCg" id="oFD-zW-n9V"/>
                 <outlet property="preferencesWindow" destination="jzf-vL-jKR" id="wPN-0m-S1N"/>
-                <outlet property="requireDigit" destination="ced-Bh-ZmN" id="h8S-sO-4ua"/>
-                <outlet property="requireMixed" destination="UuI-dE-PIR" id="Gtb-UZ-fyL"/>
-                <outlet property="requireSpecial" destination="Y1G-GD-5E7" id="DiW-2h-zFW"/>
                 <outlet property="submitButton" destination="lbn-fk-OL5" id="kq3-E7-m3q"/>
                 <outlet property="tagField" destination="u9A-Sm-3zG" id="Suy-6c-1Lx"/>
                 <outlet property="window" destination="Sxe-1A-VzL" id="J4v-vM-Ojt"/>
@@ -481,6 +476,11 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="6j4-mb-Wls"/>
+                                        <binding destination="X6c-4g-ys0" name="enabled" keyPath="self.onlyDigits" id="WZb-tb-KwU">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="X6c-4g-ys0" name="value" keyPath="self.requireDigit" id="0nq-x8-N3x"/>
                                     </connections>
                                 </button>
@@ -495,6 +495,20 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="swx-zH-3fN"/>
+                                        <binding destination="X6c-4g-ys0" name="enabled2" keyPath="self.forbidSpecial" previousBinding="79b-hf-nZs" id="qkk-YT-okf">
+                                            <dictionary key="options">
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
+                                        <binding destination="X6c-4g-ys0" name="enabled" keyPath="self.onlyDigits" id="79b-hf-nZs">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="X6c-4g-ys0" name="value" keyPath="self.requireSpecial" id="nLR-9q-3t5"/>
                                     </connections>
                                 </button>
@@ -509,6 +523,11 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="5mN-WP-u2W"/>
+                                        <binding destination="X6c-4g-ys0" name="enabled" keyPath="self.onlyDigits" id="BUN-22-hPs">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="X6c-4g-ys0" name="value" keyPath="self.requireMixed" id="gd2-MM-Xde"/>
                                     </connections>
                                 </button>
@@ -523,6 +542,11 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="wYt-n8-MNp"/>
+                                        <binding destination="X6c-4g-ys0" name="enabled" keyPath="self.onlyDigits" id="99W-Oi-9Du">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="X6c-4g-ys0" name="value" keyPath="self.forbidSpecial" id="t6H-5a-pcG"/>
                                     </connections>
                                 </button>

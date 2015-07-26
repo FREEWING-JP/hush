@@ -14,13 +14,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
   @IBOutlet weak var hashOptions: HashOptions!
 
-  @IBOutlet weak var requireDigit: NSButton!
-  @IBOutlet weak var requireSpecial: NSButton!
-  @IBOutlet weak var requireMixed: NSButton!
-
-  @IBOutlet weak var forbidSpecial: NSButton!
-  @IBOutlet weak var onlyDigits: NSButton!
-
   @IBOutlet weak var optionsButton: NSButton!
   @IBOutlet weak var submitButton: NSButton!
 
@@ -219,7 +212,6 @@ extension AppDelegate {
       }
       if let options = options {
         hashOptions.setTo(options)
-        updateOptionState()
       } else {
         resetToDefaults(self)
       }
@@ -331,7 +323,6 @@ extension AppDelegate {
     hashOptions.requireMixed = defaults.boolForKey("requireMixed")
     hashOptions.onlyDigits = defaults.boolForKey("onlyDigits")
     hashOptions.forbidSpecial = defaults.boolForKey("forbidSpecial")
-    updateOptionState()
   }
   @IBAction func updateDefaultsFromOptions(sender: AnyObject?) {
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -345,13 +336,6 @@ extension AppDelegate {
 
   @IBAction func updateOptions(sender: AnyObject?) {
     updateHash(sender)
-    updateOptionState()
-  }
-  func updateOptionState() {
-    requireDigit.enabled = !hashOptions.onlyDigits
-    requireSpecial.enabled = !hashOptions.onlyDigits && !hashOptions.forbidSpecial
-    requireMixed.enabled = !hashOptions.onlyDigits
-    forbidSpecial.enabled = !hashOptions.onlyDigits
   }
 
   @IBAction func pressDefaultsButton(sender: AnyObject?) {

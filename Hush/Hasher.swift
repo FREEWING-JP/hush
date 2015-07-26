@@ -1,12 +1,12 @@
 import Cocoa
 
 @objc class HashOptions : NSObject, NSCoding {
-  dynamic var length: Int = 16
-  dynamic var requireDigit: Bool = true
-  dynamic var requireSpecial: Bool = true
-  dynamic var requireMixed: Bool = true
-  dynamic var forbidSpecial: Bool = false
-  dynamic var onlyDigits: Bool = false
+  dynamic var length = 16
+  dynamic var requireDigit = true
+  dynamic var requireSpecial = true
+  dynamic var requireMixed = true
+  dynamic var forbidSpecial = false
+  dynamic var onlyDigits = false
 
   required override init() {}
   required init?(coder aDecoder: NSCoder) {
