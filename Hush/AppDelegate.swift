@@ -119,27 +119,28 @@ extension AppDelegate {
     guard
       let app = ws.menuBarOwningApplication,
       let appName = app.localizedName,
-      let appID = app.bundleIdentifier,
+      let appID = app.bundleIdentifier else {return}
 
-      let service = "Hush Apps".dataUsingEncoding(NSUTF8StringEncoding),
-      let account = appID.dataUsingEncoding(NSUTF8StringEncoding),
-      let label = "Hush (\(appName))".dataUsingEncoding(NSUTF8StringEncoding),
-      let tag = tagField.stringValue.dataUsingEncoding(NSUTF8StringEncoding) else {return}
+    let dict = NSMutableDictionary()
+    if rememberTag {dict["tag"] = tagField.stringValue}
+    if rememberOptions {dict["options"] = hashOptions}
+    let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
 
-    var item: SecKeychainItem?
-    if SecKeychainFindGenericPassword(nil, UInt32(service.length), UnsafePointer(service.bytes), UInt32(account.length), UnsafePointer(account.bytes), nil, nil, &item) != noErr {
-      guard SecKeychainAddGenericPassword(nil, UInt32(service.length), UnsafePointer(service.bytes), UInt32(account.length), UnsafePointer(account.bytes), 0, nil, &item) == noErr else {return}
-    }
-    guard let it = item else {return}
-    let options = rememberOptions ? NSKeyedArchiver.archivedDataWithRootObject(hashOptions) : NSData(bytes: nil, length: 0)
+    if SecItemUpdate([
+      kSecClass as String: kSecClassGenericPassword as String,
+      kSecAttrService as String: "Hush Apps",
+      kSecAttrAccount as String: appID,
+      ], [
+      kSecValueData as String: data,
+      ]) == noErr {return}
 
-    var attrs = [
-      SecKeychainAttribute(tag: SecItemAttr.LabelItemAttr.rawValue, length: UInt32(label.length), data: UnsafeMutablePointer(label.bytes)),
-      SecKeychainAttribute(tag: SecItemAttr.GenericItemAttr.rawValue, length: UInt32(options.length), data: UnsafeMutablePointer(options.bytes)),
-    ]
-    // TODO: store options securely (i.e., in data rather than attributes)
-    var list = SecKeychainAttributeList(count: UInt32(attrs.count), attr: &attrs)
-    SecKeychainItemModifyAttributesAndData(it, &list, rememberTag ? UInt32(tag.length) : 0, rememberTag ? tag.bytes : nil)
+    SecItemAdd([
+      kSecClass as String: kSecClassGenericPassword as String,
+      kSecAttrService as String: "Hush Apps",
+      kSecAttrAccount as String: appID,
+      kSecAttrLabel as String: "Hush (\(appName))",
+      kSecValueData as String: data,
+    ], nil)
   }
   func loadOptionsForCurrentApp() -> (String?, HashOptions?) {
     let ws = NSWorkspace.sharedWorkspace()
@@ -148,23 +149,15 @@ extension AppDelegate {
     var result: AnyObject?
     guard SecItemCopyMatching([
       kSecClass as String: kSecClassGenericPassword as String,
-      kSecAttrAccount as String: appID,
       kSecAttrService as String: "Hush Apps",
+      kSecAttrAccount as String: appID,
       kSecReturnData as String: true,
-      kSecReturnAttributes as String: true,
       ], &result) == noErr,
-      let dict = result.flatMap({$0 as? Dictionary<String, AnyObject>}) else {return (nil, nil)}
+      let data = result as? NSData,
+      let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data) else {return (nil, nil)}
 
-    var tag: String?
-    var hashOptions: HashOptions?
-    if let tagData = dict[kSecValueData as String] as? NSData,
-      let tagString = NSString(data: tagData, encoding: NSUTF8StringEncoding) {
-        tag = tagString as String
-    }
-    if let optionsData = dict[kSecAttrGeneric as String] as? NSData,
-      let options = NSKeyedUnarchiver.unarchiveObjectWithData(optionsData) as? HashOptions {
-        hashOptions = options
-    }
+    let tag = dict["tag"] as? String
+    let hashOptions = dict["options"] as? HashOptions
     return (tag, hashOptions)
   }
 
