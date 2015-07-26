@@ -23,6 +23,7 @@
                 <outlet property="optionsMarginTopConstraint" destination="dJa-Mb-FQE" id="pTG-3R-PJV"/>
                 <outlet property="passField" destination="tws-0n-HCg" id="oFD-zW-n9V"/>
                 <outlet property="preferencesWindow" destination="jzf-vL-jKR" id="wPN-0m-S1N"/>
+                <outlet property="securityButton" destination="kkZ-Mt-CUU" id="Fkb-U3-DrF"/>
                 <outlet property="submitButton" destination="lbn-fk-OL5" id="kq3-E7-m3q"/>
                 <outlet property="tagField" destination="u9A-Sm-3zG" id="Suy-6c-1Lx"/>
                 <outlet property="window" destination="Sxe-1A-VzL" id="J4v-vM-Ojt"/>
@@ -542,12 +543,12 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="updateOptions:" target="zA8-KC-z45" id="wYt-n8-MNp"/>
+                                        <binding destination="X6c-4g-ys0" name="value" keyPath="self.forbidSpecial" id="t6H-5a-pcG"/>
                                         <binding destination="X6c-4g-ys0" name="enabled" keyPath="self.onlyDigits" id="99W-Oi-9Du">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="X6c-4g-ys0" name="value" keyPath="self.forbidSpecial" id="t6H-5a-pcG"/>
                                     </connections>
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="qUU-gF-d97">
@@ -753,7 +754,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="zA8-KC-z45" id="cNK-Y6-Xfw"/>
             </connections>
-            <point key="canvasLocation" x="70.5" y="328"/>
+            <point key="canvasLocation" x="70.5" y="338"/>
         </window>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="jzf-vL-jKR" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
@@ -810,6 +811,9 @@ Gw
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="securityButtonSelect:" target="zA8-KC-z45" id="NhU-dH-CXS"/>
+                        </connections>
                     </popUpButton>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="onP-rG-5xZ">
                         <rect key="frame" x="166" y="170" width="71" height="18"/>

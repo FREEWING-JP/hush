@@ -2,6 +2,7 @@ import Cocoa
 
 var defaultsContext = 0
 let UIDefaults = ["revealTag", "revealHash"]
+let allDefaults = ["guessTag", "rememberTag", "rememberOptions", "rememberPass"] + UIDefaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
@@ -26,6 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
   var optionsHeight: CGFloat = 0
 
   private var _optionsVisible: Bool = true
+
+  @IBOutlet weak var securityButton: NSPopUpButton!
 }
 
 extension AppDelegate {
@@ -46,7 +49,7 @@ extension AppDelegate {
       "revealTag": true,
       "revealHash": false,
     ])
-    for key in UIDefaults {
+    for key in allDefaults {
       defaults.addObserver(self, forKeyPath: key, options: [], context: &defaultsContext)
     }
     // TODO: set login item on first run / add a preference for this
@@ -357,10 +360,50 @@ extension AppDelegate : NSTextFieldDelegate {
 extension AppDelegate {
   override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
     if context == &defaultsContext {
-      applyUIPreferences(object)
+      if (UIDefaults.contains(keyPath!)) {
+        applyUIPreferences(object)
+      }
+      updateSecurityButton()
     } else {
       return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
     }
+  }
+
+  func updateSecurityButton() {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let opts = (
+      defaults.boolForKey("guessTag"),
+      defaults.boolForKey("rememberTag"),
+      defaults.boolForKey("rememberOptions"),
+      defaults.boolForKey("rememberPass"),
+      defaults.boolForKey("revealTag"),
+      defaults.boolForKey("revealHash")
+    )
+    securityButton.selectItemAtIndex(securityIndexForOpts(opts))
+  }
+  func securityIndexForOpts(opts: (Bool, Bool, Bool, Bool, Bool, Bool)) -> Int {
+    switch opts {
+    case (true, true, true, true, true, true): return 0
+    case (true, true, true, false, true, false): return 1
+    case (false, false, false, false, false, false): return 2
+    default: return 3
+    }
+  }
+  @IBAction func securityButtonSelect(sender: AnyObject) {
+    let opts: (Bool, Bool, Bool, Bool, Bool, Bool)
+    switch securityButton.indexOfSelectedItem {
+    case 0: opts = (true, true, true, true, true, true)
+    case 1: opts = (true, true, true, false, true, false)
+    case 2: opts = (false, false, false, false, false, false)
+    default: return
+    }
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setBool(opts.0, forKey: "guessTag")
+    defaults.setBool(opts.1, forKey: "rememberTag")
+    defaults.setBool(opts.2, forKey: "rememberOptions")
+    defaults.setBool(opts.3, forKey: "rememberPass")
+    defaults.setBool(opts.4, forKey: "revealTag")
+    defaults.setBool(opts.5, forKey: "revealHash")
   }
 
   @IBAction func applyUIPreferences(sender: AnyObject?) {

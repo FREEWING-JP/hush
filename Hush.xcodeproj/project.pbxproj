@@ -17,6 +17,7 @@
 		A18A60F11B61BFBC0082D157 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18A60F01B61BFBC0082D157 /* Main.xib */; };
 		A18A81821B62C51300F21A2F /* HotKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A81811B62C51300F21A2F /* HotKeys.m */; };
 		A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */; };
+		A1FF80591B6484B2005C5B62 /* Assets.sketch in Resources */ = {isa = PBXBuildFile; fileRef = A1FF80581B6484B2005C5B62 /* Assets.sketch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		A18A81801B62C51300F21A2F /* HotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeys.h; sourceTree = "<group>"; };
 		A18A81811B62C51300F21A2F /* HotKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeys.m; sourceTree = "<group>"; };
 		A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEventFlags_.swift; sourceTree = "<group>"; };
+		A1FF80581B6484B2005C5B62 /* Assets.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; name = Assets.sketch; path = ../Hush/Assets.sketch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		A18A60E31B61BA690082D157 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A1FF80581B6484B2005C5B62 /* Assets.sketch */,
 				A18A60E41B61BA690082D157 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -218,6 +221,7 @@
 			files = (
 				A18A60F11B61BFBC0082D157 /* Main.xib in Resources */,
 				A18A60D71B61BA690082D157 /* Images.xcassets in Resources */,
+				A1FF80591B6484B2005C5B62 /* Assets.sketch in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hush/Hush-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
