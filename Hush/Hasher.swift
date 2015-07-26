@@ -25,6 +25,15 @@ import Cocoa
     aCoder.encodeBool(forbidSpecial, forKey: "forbidSpecial")
     aCoder.encodeBool(onlyDigits, forKey: "onlyDigits")
   }
+
+  func setTo(o: HashOptions) {
+    length = o.length
+    requireDigit = o.requireDigit
+    requireSpecial = o.requireSpecial
+    requireMixed = o.requireMixed
+    forbidSpecial = o.forbidSpecial
+    onlyDigits = o.onlyDigits
+  }
 }
 
 class Hasher : NSObject {

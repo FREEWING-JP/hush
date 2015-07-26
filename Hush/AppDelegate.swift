@@ -119,9 +119,8 @@ extension AppDelegate {
     guard
       let app = ws.menuBarOwningApplication,
       let appName = app.localizedName,
-      let appID = app.bundleIdentifier else {return}
+      let appID = app.bundleIdentifier,
 
-    guard
       let service = "Hush".dataUsingEncoding(NSUTF8StringEncoding),
       let account = appID.dataUsingEncoding(NSUTF8StringEncoding),
       let label = "Hush Tag: \(appName)".dataUsingEncoding(NSUTF8StringEncoding),
@@ -140,6 +139,34 @@ extension AppDelegate {
     ]
     var list = SecKeychainAttributeList(count: UInt32(attrs.count), attr: &attrs)
     SecKeychainItemModifyAttributesAndData(it, &list, rememberTag ? UInt32(tag.length) : 0, rememberTag ? tag.bytes : nil)
+  }
+
+  func loadOptionsForCurrentApp() -> (String?, HashOptions?) {
+    let ws = NSWorkspace.sharedWorkspace()
+    guard let appID = ws.menuBarOwningApplication?.bundleIdentifier else {return (nil, nil)}
+
+    var result: AnyObject?
+    let searchOptions = [
+      kSecClass as String: kSecClassGenericPassword as String,
+      kSecAttrAccount as String: appID,
+      kSecAttrService as String: "Hush",
+      kSecReturnData as String: true,
+      kSecReturnAttributes as String: true,
+    ]
+    guard SecItemCopyMatching(searchOptions, &result) == noErr,
+      let dict = result.flatMap({$0 as? Dictionary<String, AnyObject>}) else {return (nil, nil)}
+
+    var tag: String?
+    var hashOptions: HashOptions?
+    if let tagData = dict[kSecValueData as String] as? NSData,
+      let tagString = NSString(data: tagData, encoding: NSUTF8StringEncoding) {
+        tag = tagString as String
+    }
+    if let optionsData = dict[kSecAttrGeneric as String] as? NSData,
+      let options = NSKeyedUnarchiver.unarchiveObjectWithData(optionsData) as? HashOptions {
+        hashOptions = options
+    }
+    return (tag, hashOptions)
   }
 
   func saveMasterPass() {
@@ -161,12 +188,18 @@ extension AppDelegate {
 
   @IBAction func showDialog(sender: AnyObject?) {
     let defaults = NSUserDefaults.standardUserDefaults()
+    let rememberTag = defaults.boolForKey("rememberTag")
+    let rememberOptions = defaults.boolForKey("rememberOptions")
 
-    if defaults.boolForKey("rememberTag") {
-      // TODO: restore tag from keychain
-    }
-    if defaults.boolForKey("rememberOptions") {
-      // TODO: restore options from keychain
+    if rememberTag || rememberOptions {
+      let (tag, options) = loadOptionsForCurrentApp()
+      if let tag = tag {
+        tagField.stringValue = tag
+      }
+      if let options = options {
+        hashOptions.setTo(options)
+        updateOptionState()
+      }
     }
     if defaults.boolForKey("rememberPass") {
       // TODO: restore passphrase from keychain
