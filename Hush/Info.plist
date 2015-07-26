@@ -27,7 +27,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015 Nathan Dinsmore. All rights reserved.</string>
+	<string>Public domain (see http://unlicense.org/).</string>
 	<key>NSMainNibFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
