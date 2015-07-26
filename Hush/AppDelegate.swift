@@ -121,9 +121,9 @@ extension AppDelegate {
       let appName = app.localizedName,
       let appID = app.bundleIdentifier,
 
-      let service = "Hush".dataUsingEncoding(NSUTF8StringEncoding),
+      let service = "Hush Apps".dataUsingEncoding(NSUTF8StringEncoding),
       let account = appID.dataUsingEncoding(NSUTF8StringEncoding),
-      let label = "Hush Tag: \(appName)".dataUsingEncoding(NSUTF8StringEncoding),
+      let label = "Hush (\(appName))".dataUsingEncoding(NSUTF8StringEncoding),
       let tag = tagField.stringValue.dataUsingEncoding(NSUTF8StringEncoding) else {return}
 
     var item: SecKeychainItem?
@@ -137,23 +137,22 @@ extension AppDelegate {
       SecKeychainAttribute(tag: SecItemAttr.LabelItemAttr.rawValue, length: UInt32(label.length), data: UnsafeMutablePointer(label.bytes)),
       SecKeychainAttribute(tag: SecItemAttr.GenericItemAttr.rawValue, length: UInt32(options.length), data: UnsafeMutablePointer(options.bytes)),
     ]
+    // TODO: store options securely (i.e., in data rather than attributes)
     var list = SecKeychainAttributeList(count: UInt32(attrs.count), attr: &attrs)
     SecKeychainItemModifyAttributesAndData(it, &list, rememberTag ? UInt32(tag.length) : 0, rememberTag ? tag.bytes : nil)
   }
-
   func loadOptionsForCurrentApp() -> (String?, HashOptions?) {
     let ws = NSWorkspace.sharedWorkspace()
     guard let appID = ws.menuBarOwningApplication?.bundleIdentifier else {return (nil, nil)}
 
     var result: AnyObject?
-    let searchOptions = [
+    guard SecItemCopyMatching([
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrAccount as String: appID,
-      kSecAttrService as String: "Hush",
+      kSecAttrService as String: "Hush Apps",
       kSecReturnData as String: true,
       kSecReturnAttributes as String: true,
-    ]
-    guard SecItemCopyMatching(searchOptions, &result) == noErr,
+      ], &result) == noErr,
       let dict = result.flatMap({$0 as? Dictionary<String, AnyObject>}) else {return (nil, nil)}
 
     var tag: String?
@@ -170,7 +169,36 @@ extension AppDelegate {
   }
 
   func saveMasterPass() {
-    guard NSUserDefaults.standardUserDefaults().boolForKey("rememberPass") else {return}
+    guard NSUserDefaults.standardUserDefaults().boolForKey("rememberPass"),
+      let data = passField.stringValue.dataUsingEncoding(NSUTF8StringEncoding) else {return}
+
+    if SecItemUpdate([
+      kSecClass as String: kSecClassGenericPassword as String,
+      kSecAttrService as String: "Hush",
+      kSecAttrAccount as String: "master",
+    ], [
+      kSecValueData as String: data,
+    ]) == noErr {return}
+
+    SecItemAdd([
+      kSecClass as String: kSecClassGenericPassword as String,
+      kSecAttrService as String: "Hush",
+      kSecAttrAccount as String: "master",
+      kSecAttrLabel as String: "Hush",
+      kSecValueData as String: data as CFData,
+    ], nil)
+  }
+  func loadMasterPass() -> String? {
+    var result: AnyObject?
+    guard SecItemCopyMatching([
+      kSecClass as String: kSecClassGenericPassword as String,
+      kSecAttrService as String: "Hush",
+      kSecAttrAccount as String: "master",
+      kSecReturnData as String: true,
+      ], &result) == noErr,
+      let data = result as? NSData,
+      let pass = NSString(data: data, encoding: NSUTF8StringEncoding) else {return nil}
+    return pass as String
   }
 }
 
@@ -201,8 +229,9 @@ extension AppDelegate {
         updateOptionState()
       }
     }
-    if defaults.boolForKey("rememberPass") {
-      // TODO: restore passphrase from keychain
+    if defaults.boolForKey("rememberPass"),
+      let pass = loadMasterPass() {
+      passField.stringValue = pass
     }
     if tagField.stringValue == "" {
       if defaults.boolForKey("guessTag") {
