@@ -220,27 +220,28 @@ extension AppDelegate {
       if let options = options {
         hashOptions.setTo(options)
         updateOptionState()
+      } else {
+        resetToDefaults(self)
       }
     }
     if defaults.boolForKey("rememberPass"),
       let pass = loadMasterPass() {
       passField.stringValue = pass
     }
-    if tagField.stringValue == "" {
-      if defaults.boolForKey("guessTag") {
-        let ws = NSWorkspace.sharedWorkspace()
-        if let app = ws.menuBarOwningApplication,
-          let name = app.localizedName {
-            // just spaces
-            // let tag = name.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
+    if tagField.stringValue == "" && defaults.boolForKey("guessTag") {
+      let ws = NSWorkspace.sharedWorkspace()
+      if let app = ws.menuBarOwningApplication,
+        let name = app.localizedName {
+          // just spaces
+          // let tag = name.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
 
-            // kill EVERYTHING (except letters and numbers)
-            let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
-            let tag = (name.lowercaseString.componentsSeparatedByCharactersInSet(set) as NSArray).componentsJoinedByString("")
-            tagField.stringValue = tag
-        }
+          // kill EVERYTHING (except letters and numbers)
+          let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
+          let tag = (name.lowercaseString.componentsSeparatedByCharactersInSet(set) as NSArray).componentsJoinedByString("")
+          tagField.stringValue = tag
       }
     }
+    updateHash(self)
     if window.screen != NSScreen.mainScreen(),
       let scr = NSScreen.mainScreen()?.visibleFrame,
       let old = window.screen?.visibleFrame {
