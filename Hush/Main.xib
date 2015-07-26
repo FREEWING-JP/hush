@@ -12,8 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="X6c-4g-ys0" customClass="HashOptions" customModule="Hush" customModuleProvider="target"/>
-        <customObject id="zA8-KC-z45" customClass="AppDelegate" customModule="Hush" customModuleProvider="target">
+        <customObject id="zA8-KC-z45" userLabel="App Delegate" customClass="AppDelegate" customModule="Hush" customModuleProvider="target">
             <connections>
                 <outlet property="forbidSpecial" destination="j9s-O9-nfx" id="BnE-3Y-Sot"/>
                 <outlet property="hashField" destination="zbk-5g-5Ko" id="s1L-pw-scE"/>
@@ -24,7 +23,6 @@
                 <outlet property="optionsButton" destination="msa-GX-xf2" id="uFK-oj-EsY"/>
                 <outlet property="optionsMarginBottomConstraint" destination="2fH-SN-ghL" id="Uni-4k-pnD"/>
                 <outlet property="optionsMarginTopConstraint" destination="dJa-Mb-FQE" id="pTG-3R-PJV"/>
-                <outlet property="optionsSideConstraint" destination="vt8-sn-7gx" id="Xcc-4K-Nod"/>
                 <outlet property="passField" destination="tws-0n-HCg" id="oFD-zW-n9V"/>
                 <outlet property="preferencesWindow" destination="jzf-vL-jKR" id="wPN-0m-S1N"/>
                 <outlet property="requireDigit" destination="ced-Bh-ZmN" id="h8S-sO-4ua"/>
@@ -35,6 +33,7 @@
                 <outlet property="window" destination="Sxe-1A-VzL" id="J4v-vM-Ojt"/>
             </connections>
         </customObject>
+        <customObject id="X6c-4g-ys0" customClass="HashOptions" customModule="Hush" customModuleProvider="target"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -421,7 +420,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Hush" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Sxe-1A-VzL" customClass="NSPanel">
+        <window title="Hush" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Hush" animationBehavior="default" id="Sxe-1A-VzL" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
             <rect key="contentRect" x="1995" y="251" width="413" height="328"/>
@@ -543,7 +542,7 @@
                                 </button>
                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e9B-ui-0ph">
                                     <rect key="frame" x="86" y="150" width="40" height="19"/>
-                                    <popUpButtonCell key="cell" type="roundRect" title="16" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" tag="16" imageScaling="proportionallyDown" inset="2" selectedItem="HLk-l7-kv8" id="671-hL-br0">
+                                    <popUpButtonCell key="cell" type="roundRect" title="16" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="16" imageScaling="proportionallyDown" inset="2" selectedItem="HLk-l7-kv8" id="671-hL-br0">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="cellTitle"/>
                                         <menu key="menu" id="XJZ-fX-N8Y">
@@ -555,7 +554,7 @@
                                                 <menuItem title="10" tag="10" id="RRN-vk-Ybh"/>
                                                 <menuItem title="12" tag="12" id="7CT-OR-9bT"/>
                                                 <menuItem title="14" tag="14" id="4pS-yq-iXh"/>
-                                                <menuItem title="16" tag="16" id="HLk-l7-kv8">
+                                                <menuItem title="16" state="on" tag="16" id="HLk-l7-kv8">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                 </menuItem>
                                                 <menuItem title="18" tag="18" id="aRe-zs-QGg"/>
@@ -722,7 +721,6 @@ Gw
                     <constraint firstItem="msa-GX-xf2" firstAttribute="trailing" secondItem="u9A-Sm-3zG" secondAttribute="trailing" id="jr4-6W-N8g"/>
                     <constraint firstItem="u9A-Sm-3zG" firstAttribute="top" secondItem="m8H-ee-23x" secondAttribute="top" constant="8" id="mqd-Kf-hX6"/>
                     <constraint firstItem="zbk-5g-5Ko" firstAttribute="leading" secondItem="u9A-Sm-3zG" secondAttribute="leading" id="urk-Jp-dxb"/>
-                    <constraint firstItem="fsX-4T-s0I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m8H-ee-23x" secondAttribute="leading" constant="20" id="vt8-sn-7gx"/>
                     <constraint firstItem="zbk-5g-5Ko" firstAttribute="leading" secondItem="tws-0n-HCg" secondAttribute="leading" id="wHG-mY-YFZ"/>
                     <constraint firstAttribute="trailing" secondItem="u9A-Sm-3zG" secondAttribute="trailing" constant="8" id="xsP-cJ-0ak"/>
                     <constraint firstItem="lbn-fk-OL5" firstAttribute="leading" secondItem="K16-a7-fh8" secondAttribute="trailing" constant="8" id="ySJ-R4-9h0"/>
@@ -778,7 +776,7 @@ Gw
                         <rect key="frame" x="166" y="197" width="84" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Medium" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Xye-NN-2W2" id="w2R-l6-AZh">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" id="JvL-CL-Ubo">
                                 <items>
                                     <menuItem title="Light" id="0kM-Ak-Y2Q"/>
@@ -940,7 +938,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="zA8-KC-z45" id="58I-hw-RUZ"/>
             </connections>
-            <point key="canvasLocation" x="71" y="774"/>
+            <point key="canvasLocation" x="70" y="728"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="MBb-AG-Tzx"/>
     </objects>

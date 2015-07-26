@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
   @IBOutlet var optionsBottomConstraint: NSLayoutConstraint!
   @IBOutlet var optionsMarginBottomConstraint: NSLayoutConstraint!
   @IBOutlet var optionsMarginTopConstraint: NSLayoutConstraint!
-  @IBOutlet var optionsSideConstraint: NSLayoutConstraint!
+  var optionsSideConstraint: NSLayoutConstraint!
   var optionsHeightConstraint: NSLayoutConstraint!
   var optionsHeight: CGFloat = 0
 
@@ -66,6 +66,7 @@ extension AppDelegate {
 
     optionsHeight = optionsBox.contentView!.frame.height
     optionsHeightConstraint = NSLayoutConstraint(item: optionsBox.contentView!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: optionsHeight)
+    optionsSideConstraint = NSLayoutConstraint(item: optionsBox, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: window.contentView, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 20)
     self.window.contentView.addConstraint(optionsHeightConstraint)
 
     HotKeys.registerHotKey(UInt32(kVK_ANSI_H), modifiers: UInt32(cmdKey|optionKey|controlKey), block: {
@@ -74,7 +75,6 @@ extension AppDelegate {
 
     preferencesWindow.level = Int(CGWindowLevelForKey(CGWindowLevelKey.FloatingWindowLevelKey))
 
-    // FIXME: doing this here sets the maximum width wider than necessary
     if let o = defaults.objectForKey("optionsVisible") as? NSNumber {setOptionsVisible(o.boolValue, animate: false)}
     applyUIPreferences(self)
     resetToDefaults(self)
