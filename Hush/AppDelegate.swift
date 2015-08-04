@@ -105,24 +105,20 @@ extension AppDelegate {
       hideDialog(self)
       return
     }
-    saveDataForCurrentApp()
+    if let app = currentApp() {
+      saveDataForApp(app)
+    }
     saveMasterPass()
     hideDialog(self)
     guard let es = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState) else {return}
     KeyboardEmulator.replaceText(hash, eventSource: es)
   }
 
-  func saveDataForCurrentApp() {
+  func saveDataForApp(app: String) {
     let defaults = NSUserDefaults.standardUserDefaults()
     let rememberTag = defaults.boolForKey("rememberTag")
     let rememberOptions = defaults.boolForKey("rememberOptions")
     guard rememberTag || rememberOptions else {return}
-
-    let ws = NSWorkspace.sharedWorkspace()
-    guard
-      let app = ws.menuBarOwningApplication,
-      let appName = app.localizedName,
-      let appID = app.bundleIdentifier else {return}
 
     let dict = NSMutableDictionary()
     if rememberTag {dict["tag"] = tagField.stringValue}
@@ -132,7 +128,7 @@ extension AppDelegate {
     if SecItemUpdate([
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush Apps",
-      kSecAttrAccount as String: appID,
+      kSecAttrAccount as String: app,
       ], [
       kSecValueData as String: data,
       ]) == noErr {return}
@@ -140,20 +136,17 @@ extension AppDelegate {
     SecItemAdd([
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush Apps",
-      kSecAttrAccount as String: appID,
-      kSecAttrLabel as String: "Hush (\(appName))",
+      kSecAttrAccount as String: app,
+      kSecAttrLabel as String: "Hush (\(app))",
       kSecValueData as String: data,
     ], nil)
   }
-  func loadOptionsForCurrentApp() -> (String?, HashOptions?) {
-    let ws = NSWorkspace.sharedWorkspace()
-    guard let appID = ws.menuBarOwningApplication?.bundleIdentifier else {return (nil, nil)}
-
+  func loadOptionsForApp(app: String) -> (String?, HashOptions?) {
     var result: AnyObject?
     guard SecItemCopyMatching([
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush Apps",
-      kSecAttrAccount as String: appID,
+      kSecAttrAccount as String: app,
       kSecReturnData as String: true,
       ], &result) == noErr,
       let data = result as? NSData,
@@ -215,8 +208,9 @@ extension AppDelegate {
     let rememberTag = defaults.boolForKey("rememberTag")
     let rememberOptions = defaults.boolForKey("rememberOptions")
 
-    if rememberTag || rememberOptions {
-      let (tag, options) = loadOptionsForCurrentApp()
+    let app = currentApp()
+    if rememberTag || rememberOptions, let app = app {
+      let (tag, options) = loadOptionsForApp(app)
       if let tag = tag {
         tagField.stringValue = tag
       }
@@ -230,18 +224,8 @@ extension AppDelegate {
       let pass = loadMasterPass() {
       passField.stringValue = pass
     }
-    if tagField.stringValue == "" && defaults.boolForKey("guessTag") {
-      let ws = NSWorkspace.sharedWorkspace()
-      if let app = ws.menuBarOwningApplication,
-        let name = app.localizedName {
-          // just spaces
-          // let tag = name.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
-
-          // kill EVERYTHING (except letters and numbers)
-          let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
-          let tag = (name.lowercaseString.componentsSeparatedByCharactersInSet(set) as NSArray).componentsJoinedByString("")
-          tagField.stringValue = tag
-      }
+    if tagField.stringValue == "" && defaults.boolForKey("guessTag"), let app = app {
+      tagField.stringValue = app
     }
     updateHash(self)
     if window.screen != NSScreen.mainScreen(),
@@ -254,6 +238,46 @@ extension AppDelegate {
     window.makeKeyAndOrderFront(sender)
     NSApplication.sharedApplication().activateIgnoringOtherApps(true)
   }
+
+  func currentApp() -> String? {
+    let ws = NSWorkspace.sharedWorkspace()
+    guard let app = ws.menuBarOwningApplication,
+      let name = app.localizedName,
+      let id = app.bundleIdentifier else {return nil}
+
+    let base: String
+    switch id {
+    case "com.apple.Safari":
+      if let url = NSAppleScript(source: "tell application \"Safari\" to return URL of front document")?.executeAndReturnError(nil).stringValue {
+        base = appFromURL(url) ?? "Safari"
+      } else {
+        base = "Safari"
+      }
+    case "com.google.Chrome", "com.google.Chrome.canary":
+      if let url = NSAppleScript(source: "tell application \"\(name)\" to return URL of active tab of front window")?.executeAndReturnError(nil).stringValue {
+        base = appFromURL(url) ?? "Chrome"
+      } else {
+        base = "Chrome"
+      }
+    default:
+      base = name
+    }
+
+    // just spaces
+    // return base.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
+
+    // kill EVERYTHING (except letters and numbers)
+    let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
+    return "".join(base.lowercaseString.componentsSeparatedByCharactersInSet(set))
+  }
+  func appFromURL(url: String) -> String? {
+    guard var components = NSURL(string: url)?.host?.componentsSeparatedByString(".")
+      where components.count > 1 else {return nil}
+    return components[components.endIndex-2];
+//    components.removeLast()
+//    return ".".join(components);
+  }
+
   @IBAction func hideDialog(sender: AnyObject?) {
     NSApplication.sharedApplication().hide(sender)
     passField.stringValue = ""
