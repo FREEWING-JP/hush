@@ -262,17 +262,19 @@ extension AppDelegate {
 
     let base: String
     switch id {
-    case "com.apple.Safari":
-      if let url = NSAppleScript(source: "tell application \"Safari\" to return URL of front document")?.executeAndReturnError(nil).stringValue {
-        base = appFromURL(url) ?? "Safari"
+    case "com.apple.Safari", "org.webkit.nightly.WebKit":
+      let realName = id == "org.webkit.nightly.WebKit" ? "WebKit" : "Safari"
+      if let url = NSAppleScript(source: "tell application \"\(realName)\" to return URL of front document")?.executeAndReturnError(nil).stringValue {
+        base = appFromURL(url) ?? realName
       } else {
-        base = "Safari"
+        base = realName
       }
     case "com.google.Chrome", "com.google.Chrome.canary":
-      if let url = NSAppleScript(source: "tell application \"\(name)\" to return URL of active tab of front window")?.executeAndReturnError(nil).stringValue {
-        base = appFromURL(url) ?? "Chrome"
+      let realName = id == "com.google.Chrome.canary" ? "Google Chrome Canary" : "Google Chrome"
+      if let url = NSAppleScript(source: "tell application \"\(realName)\" to return URL of active tab of front window")?.executeAndReturnError(nil).stringValue {
+        base = appFromURL(url) ?? realName
       } else {
-        base = "Chrome"
+        base = realName
       }
     default:
       base = name
