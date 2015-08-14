@@ -1,6 +1,6 @@
 # Hush
 
-A sexy native password hasher for Mac OS X.
+A sexy, no-nonsense native password hasher for Mac OS X.
 
 <img alt="Screen shot of Hush" src=ScreenShots/Hush.png width=400 height=180>
 
