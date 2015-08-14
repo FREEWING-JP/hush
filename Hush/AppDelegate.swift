@@ -38,6 +38,7 @@ extension AppDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.registerDefaults([
       "length": 16,
+      "synchronizeData": true,
       "optionsVisible": false,
       "requireDigit": true,
       "requireSpecial": true,
@@ -129,17 +130,23 @@ extension AppDelegate {
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush Apps",
       kSecAttrAccount as String: app,
+      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
       ], [
       kSecValueData as String: data,
       ]) == noErr {return}
 
-    SecItemAdd([
+    var attrs = [
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush Apps",
       kSecAttrAccount as String: app,
       kSecAttrLabel as String: "Hush (\(app))",
       kSecValueData as String: data,
-    ], nil)
+    ] as [String: AnyObject]
+    if defaults.boolForKey("synchronizeData") {
+      attrs[kSecAttrSynchronizable as String] = true
+      attrs[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
+    }
+    SecItemAdd(attrs, nil)
   }
   func loadOptionsForApp(app: String) -> (String?, HashOptions?) {
     var result: AnyObject?
@@ -147,6 +154,7 @@ extension AppDelegate {
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush Apps",
       kSecAttrAccount as String: app,
+      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
       kSecReturnData as String: true,
       ], &result) == noErr,
       let data = result as? NSData,
@@ -165,17 +173,23 @@ extension AppDelegate {
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush",
       kSecAttrAccount as String: "master",
+      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
     ], [
       kSecValueData as String: data,
     ]) == noErr {return}
 
-    SecItemAdd([
+    var attrs = [
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush",
       kSecAttrAccount as String: "master",
       kSecAttrLabel as String: "Hush",
       kSecValueData as String: data as CFData,
-    ], nil)
+    ] as [String: AnyObject]
+    if NSUserDefaults.standardUserDefaults().boolForKey("synchronizeData") {
+      attrs[kSecAttrSynchronizable as String] = true
+      attrs[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
+    }
+    SecItemAdd(attrs, nil)
   }
   func loadMasterPass() -> String? {
     var result: AnyObject?
@@ -183,6 +197,7 @@ extension AppDelegate {
       kSecClass as String: kSecClassGenericPassword as String,
       kSecAttrService as String: "Hush",
       kSecAttrAccount as String: "master",
+      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
       kSecReturnData as String: true,
       ], &result) == noErr,
       let data = result as? NSData,
@@ -271,9 +286,8 @@ extension AppDelegate {
     return "".join(base.lowercaseString.componentsSeparatedByCharactersInSet(set))
   }
   func appFromURL(url: String) -> String? {
-    guard var components = NSURL(string: url)?.host?.componentsSeparatedByString(".")
-      where components.count > 1 else {return nil}
-    return components[components.endIndex-2];
+    guard var components = NSURL(string: url)?.host?.componentsSeparatedByString(".") else {return nil}
+    return components.count == 1 ? components.first : components[components.endIndex-2];
 //    components.removeLast()
 //    return ".".join(components);
   }

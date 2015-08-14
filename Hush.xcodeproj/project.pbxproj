@@ -22,6 +22,13 @@
 		A18A60F11B61BFBC0082D157 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18A60F01B61BFBC0082D157 /* Main.xib */; };
 		A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */; };
 		A1E9BA781B64ADEE0086536B /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9BA771B64ADEE0086536B /* HotKey.swift */; };
+		A1F2E0021B7D827700CA0C92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2E0011B7D827700CA0C92 /* AppDelegate.swift */; };
+		A1F2E0041B7D827700CA0C92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2E0031B7D827700CA0C92 /* ViewController.swift */; };
+		A1F2E0071B7D827700CA0C92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F2E0051B7D827700CA0C92 /* Main.storyboard */; };
+		A1F2E0091B7D827700CA0C92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1F2E0081B7D827700CA0C92 /* Assets.xcassets */; };
+		A1F2E00C1B7D827700CA0C92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F2E00A1B7D827700CA0C92 /* LaunchScreen.storyboard */; };
+		A1F2E0171B7D827700CA0C92 /* iOSHushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2E0161B7D827700CA0C92 /* iOSHushTests.swift */; };
+		A1F2E0221B7D827700CA0C92 /* iOSHushUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2E0211B7D827700CA0C92 /* iOSHushUITests.swift */; };
 		A1FF80591B6484B2005C5B62 /* Assets.sketch in Resources */ = {isa = PBXBuildFile; fileRef = A1FF80581B6484B2005C5B62 /* Assets.sketch */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +39,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = A18A60CC1B61BA690082D157;
 			remoteInfo = Hush;
+		};
+		A1F2E0131B7D827700CA0C92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18A60C51B61BA690082D157 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F2DFFE1B7D827700CA0C92;
+			remoteInfo = iOSHush;
+		};
+		A1F2E01E1B7D827700CA0C92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18A60C51B61BA690082D157 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F2DFFE1B7D827700CA0C92;
+			remoteInfo = iOSHush;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -59,6 +80,7 @@
 		A1677A2A1B64A20600B5C8E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1677A2D1B64A20600B5C8E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A1677A2F1B64A20600B5C8E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A16CB6881B7263C7006C0FD7 /* Hush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hush.entitlements; sourceTree = "<group>"; };
 		A18A60CD1B61BA690082D157 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18A60D11B61BA690082D157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A18A60D21B61BA690082D157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +92,19 @@
 		A18A817F1B62C51300F21A2F /* Hush-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hush-Bridging-Header.h"; sourceTree = "<group>"; };
 		A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGEventFlags_.swift; sourceTree = "<group>"; };
 		A1E9BA771B64ADEE0086536B /* HotKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
+		A1F2DFFF1B7D827700CA0C92 /* iOSHush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSHush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F2E0011B7D827700CA0C92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1F2E0031B7D827700CA0C92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A1F2E0061B7D827700CA0C92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A1F2E0081B7D827700CA0C92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1F2E00B1B7D827700CA0C92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1F2E00D1B7D827700CA0C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1F2E0121B7D827700CA0C92 /* iOSHushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSHushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F2E0161B7D827700CA0C92 /* iOSHushTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSHushTests.swift; sourceTree = "<group>"; };
+		A1F2E0181B7D827700CA0C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1F2E01D1B7D827700CA0C92 /* iOSHushUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSHushUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F2E0211B7D827700CA0C92 /* iOSHushUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSHushUITests.swift; sourceTree = "<group>"; };
+		A1F2E0231B7D827700CA0C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1FF80581B6484B2005C5B62 /* Assets.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = Assets.sketch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +125,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A18A60DC1B61BA690082D157 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2DFFC1B7D827700CA0C92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2E00F1B7D827700CA0C92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2E01A1B7D827700CA0C92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -124,6 +180,9 @@
 				A18A60CF1B61BA690082D157 /* Hush */,
 				A18A60E21B61BA690082D157 /* HushTests */,
 				A1677A271B64A20600B5C8E7 /* HushStartup */,
+				A1F2E0001B7D827700CA0C92 /* iOSHush */,
+				A1F2E0151B7D827700CA0C92 /* iOSHushTests */,
+				A1F2E0201B7D827700CA0C92 /* iOSHushUITests */,
 				A18A60CE1B61BA690082D157 /* Products */,
 				A15DB18A1B64A09D009494AC /* Libraries */,
 			);
@@ -135,6 +194,9 @@
 				A18A60CD1B61BA690082D157 /* Hush.app */,
 				A18A60DF1B61BA690082D157 /* HushTests.xctest */,
 				A1677A261B64A20600B5C8E7 /* HushStartup.app */,
+				A1F2DFFF1B7D827700CA0C92 /* iOSHush.app */,
+				A1F2E0121B7D827700CA0C92 /* iOSHushTests.xctest */,
+				A1F2E01D1B7D827700CA0C92 /* iOSHushUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +204,7 @@
 		A18A60CF1B61BA690082D157 /* Hush */ = {
 			isa = PBXGroup;
 			children = (
+				A16CB6881B7263C7006C0FD7 /* Hush.entitlements */,
 				A1E9BA761B64ADA80086536B /* Extensions */,
 				A18A60D21B61BA690082D157 /* AppDelegate.swift */,
 				A13BFCCD1B6422A90016AF15 /* Hasher.swift */,
@@ -189,6 +252,37 @@
 				A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		A1F2E0001B7D827700CA0C92 /* iOSHush */ = {
+			isa = PBXGroup;
+			children = (
+				A1F2E0011B7D827700CA0C92 /* AppDelegate.swift */,
+				A1F2E0031B7D827700CA0C92 /* ViewController.swift */,
+				A1F2E0051B7D827700CA0C92 /* Main.storyboard */,
+				A1F2E0081B7D827700CA0C92 /* Assets.xcassets */,
+				A1F2E00A1B7D827700CA0C92 /* LaunchScreen.storyboard */,
+				A1F2E00D1B7D827700CA0C92 /* Info.plist */,
+			);
+			path = iOSHush;
+			sourceTree = "<group>";
+		};
+		A1F2E0151B7D827700CA0C92 /* iOSHushTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1F2E0161B7D827700CA0C92 /* iOSHushTests.swift */,
+				A1F2E0181B7D827700CA0C92 /* Info.plist */,
+			);
+			path = iOSHushTests;
+			sourceTree = "<group>";
+		};
+		A1F2E0201B7D827700CA0C92 /* iOSHushUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A1F2E0211B7D827700CA0C92 /* iOSHushUITests.swift */,
+				A1F2E0231B7D827700CA0C92 /* Info.plist */,
+			);
+			path = iOSHushUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +341,59 @@
 			productReference = A18A60DF1B61BA690082D157 /* HushTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A1F2DFFE1B7D827700CA0C92 /* iOSHush */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F2E0241B7D827700CA0C92 /* Build configuration list for PBXNativeTarget "iOSHush" */;
+			buildPhases = (
+				A1F2DFFB1B7D827700CA0C92 /* Sources */,
+				A1F2DFFC1B7D827700CA0C92 /* Frameworks */,
+				A1F2DFFD1B7D827700CA0C92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSHush;
+			productName = iOSHush;
+			productReference = A1F2DFFF1B7D827700CA0C92 /* iOSHush.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A1F2E0111B7D827700CA0C92 /* iOSHushTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F2E0271B7D827700CA0C92 /* Build configuration list for PBXNativeTarget "iOSHushTests" */;
+			buildPhases = (
+				A1F2E00E1B7D827700CA0C92 /* Sources */,
+				A1F2E00F1B7D827700CA0C92 /* Frameworks */,
+				A1F2E0101B7D827700CA0C92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1F2E0141B7D827700CA0C92 /* PBXTargetDependency */,
+			);
+			name = iOSHushTests;
+			productName = iOSHushTests;
+			productReference = A1F2E0121B7D827700CA0C92 /* iOSHushTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1F2E01C1B7D827700CA0C92 /* iOSHushUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F2E02A1B7D827700CA0C92 /* Build configuration list for PBXNativeTarget "iOSHushUITests" */;
+			buildPhases = (
+				A1F2E0191B7D827700CA0C92 /* Sources */,
+				A1F2E01A1B7D827700CA0C92 /* Frameworks */,
+				A1F2E01B1B7D827700CA0C92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1F2E01F1B7D827700CA0C92 /* PBXTargetDependency */,
+			);
+			name = iOSHushUITests;
+			productName = iOSHushUITests;
+			productReference = A1F2E01D1B7D827700CA0C92 /* iOSHushUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -259,10 +406,15 @@
 				TargetAttributes = {
 					A1677A251B64A20600B5C8E7 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = A7N6279VF9;
 					};
 					A18A60CC1B61BA690082D157 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = A7N6279VF9;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 0;
 							};
@@ -271,6 +423,17 @@
 					A18A60DE1B61BA690082D157 = {
 						CreatedOnToolsVersion = 6.4;
 						TestTargetID = A18A60CC1B61BA690082D157;
+					};
+					A1F2DFFE1B7D827700CA0C92 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					A1F2E0111B7D827700CA0C92 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = A1F2DFFE1B7D827700CA0C92;
+					};
+					A1F2E01C1B7D827700CA0C92 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = A1F2DFFE1B7D827700CA0C92;
 					};
 				};
 			};
@@ -290,6 +453,9 @@
 				A18A60CC1B61BA690082D157 /* Hush */,
 				A18A60DE1B61BA690082D157 /* HushTests */,
 				A1677A251B64A20600B5C8E7 /* HushStartup */,
+				A1F2DFFE1B7D827700CA0C92 /* iOSHush */,
+				A1F2E0111B7D827700CA0C92 /* iOSHushTests */,
+				A1F2E01C1B7D827700CA0C92 /* iOSHushUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -315,6 +481,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A18A60DD1B61BA690082D157 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2DFFD1B7D827700CA0C92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1F2E00C1B7D827700CA0C92 /* LaunchScreen.storyboard in Resources */,
+				A1F2E0091B7D827700CA0C92 /* Assets.xcassets in Resources */,
+				A1F2E0071B7D827700CA0C92 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2E0101B7D827700CA0C92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2E01B1B7D827700CA0C92 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -354,6 +544,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1F2DFFB1B7D827700CA0C92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1F2E0041B7D827700CA0C92 /* ViewController.swift in Sources */,
+				A1F2E0021B7D827700CA0C92 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2E00E1B7D827700CA0C92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1F2E0171B7D827700CA0C92 /* iOSHushTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F2E0191B7D827700CA0C92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1F2E0221B7D827700CA0C92 /* iOSHushUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -361,6 +576,16 @@
 			isa = PBXTargetDependency;
 			target = A18A60CC1B61BA690082D157 /* Hush */;
 			targetProxy = A18A60E01B61BA690082D157 /* PBXContainerItemProxy */;
+		};
+		A1F2E0141B7D827700CA0C92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F2DFFE1B7D827700CA0C92 /* iOSHush */;
+			targetProxy = A1F2E0131B7D827700CA0C92 /* PBXContainerItemProxy */;
+		};
+		A1F2E01F1B7D827700CA0C92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F2DFFE1B7D827700CA0C92 /* iOSHush */;
+			targetProxy = A1F2E01E1B7D827700CA0C92 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -373,6 +598,22 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
+		A1F2E0051B7D827700CA0C92 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1F2E0061B7D827700CA0C92 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A1F2E00A1B7D827700CA0C92 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1F2E00B1B7D827700CA0C92 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -380,6 +621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HushStartup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -392,6 +634,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HushStartup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -486,6 +729,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Hush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -495,6 +741,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hush/Hush-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -505,6 +752,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Hush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -514,6 +764,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hush/Hush-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -557,6 +808,95 @@
 			};
 			name = Release;
 		};
+		A1F2E0251B7D827700CA0C92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = iOSHush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHush;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1F2E0261B7D827700CA0C92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = iOSHush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHush;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1F2E0281B7D827700CA0C92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iOSHushTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHushTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSHush.app/iOSHush";
+			};
+			name = Debug;
+		};
+		A1F2E0291B7D827700CA0C92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iOSHushTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHushTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSHush.app/iOSHush";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1F2E02B1B7D827700CA0C92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = iOSHushUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHushUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_TARGET_NAME = iOSHush;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		A1F2E02C1B7D827700CA0C92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = iOSHushUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHushUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_TARGET_NAME = iOSHush;
+				USES_XCTRUNNER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -595,6 +935,30 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A1F2E0241B7D827700CA0C92 /* Build configuration list for PBXNativeTarget "iOSHush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F2E0251B7D827700CA0C92 /* Debug */,
+				A1F2E0261B7D827700CA0C92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A1F2E0271B7D827700CA0C92 /* Build configuration list for PBXNativeTarget "iOSHushTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F2E0281B7D827700CA0C92 /* Debug */,
+				A1F2E0291B7D827700CA0C92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A1F2E02A1B7D827700CA0C92 /* Build configuration list for PBXNativeTarget "iOSHushUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F2E02B1B7D827700CA0C92 /* Debug */,
+				A1F2E02C1B7D827700CA0C92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
