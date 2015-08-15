@@ -25,7 +25,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     let field: UITextField
-    if let text = tagField.text where !text.isEmpty {
+    if let tag = tagField.text, pass = passField.text where !tag.isEmpty && pass.isEmpty {
       field = passField
     } else {
       field = tagField
