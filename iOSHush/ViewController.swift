@@ -13,6 +13,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
     super.viewDidLoad()
 
     hashField.attributedPlaceholder = NSAttributedString(string: hashField.placeholder!, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16)])
+    reset()
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -50,7 +51,13 @@ class ViewController: UITableViewController, UITextFieldDelegate {
 
   func reset() {
 //    tagField.text = ""
-    passField.text = ""
+    let defaults = NSUserDefaults.standardUserDefaults()
+    if defaults.boolForKey("rememberPass"),
+      let pass = Keychain.loadMasterPass() {
+        passField.text = pass
+    } else {
+      passField.text = ""
+    }
     updateHash(self)
   }
 
@@ -93,6 +100,12 @@ class ViewController: UITableViewController, UITextFieldDelegate {
     UIPasteboard.generalPasteboard().string = hash
     hashCell.accessoryType = UITableViewCellAccessoryType.Checkmark
     passField.resignFirstResponder()
+
+    let defaults = NSUserDefaults.standardUserDefaults()
+    if defaults.boolForKey("rememberPass"),
+      let pass = passField.text {
+        Keychain.saveMasterPass(pass)
+    }
   }
 
   func applyUIPreferences() {
