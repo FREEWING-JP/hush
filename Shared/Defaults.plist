@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>length</key>
+	<integer>16</integer>
+	<key>synchronizeData</key>
+	<true/>
+	<key>requireDigit</key>
+	<true/>
+	<key>requireSpecial</key>
+	<true/>
+	<key>requireMixed</key>
+	<true/>
+	<key>forbidSpecial</key>
+	<false/>
+	<key>onlyDigits</key>
+	<false/>
+	<key>rememberOptions</key>
+	<true/>
+	<key>rememberPass</key>
+	<false/>
+	<key>revealTag</key>
+	<true/>
+	<key>revealHash</key>
+	<false/>
+</dict>
+</plist>

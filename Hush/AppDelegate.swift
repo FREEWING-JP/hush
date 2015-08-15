@@ -13,7 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
   @IBOutlet weak var passField: NSSecureTextField!
   @IBOutlet weak var hashField: NSSecureTextField!
 
-  @IBOutlet weak var hashOptions: HashOptions!
+  @IBOutlet var hashOptions: HashOptions!
 
   @IBOutlet weak var optionsButton: NSButton!
   @IBOutlet weak var submitButton: NSButton!
@@ -36,24 +36,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 extension AppDelegate {
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.registerDefaults([
-      "length": 16,
-      "synchronizeData": true,
-      "optionsVisible": false,
-      "requireDigit": true,
-      "requireSpecial": true,
-      "requireMixed": true,
-      "onlyDigits": false,
-      "forbidSpecial": false,
-
-      "enableLoginItem": true,
-      "guessTag": true,
-      "rememberTag": true,
-      "rememberOptions": true,
-      "rememberPass": false,
-      "revealTag": true,
-      "revealHash": false,
-    ])
+    for name in ["Defaults", "OSXDefaults"] {
+      if let path = NSBundle.mainBundle().pathForResource(name, ofType: "plist"),
+        let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+          defaults.registerDefaults(dict)
+      }
+    }
     for key in allDefaults {
       defaults.addObserver(self, forKeyPath: key, options: [], context: &defaultsContext)
     }
@@ -107,102 +95,12 @@ extension AppDelegate {
       return
     }
     if let app = currentApp() {
-      saveDataForApp(app)
+      Keychain.saveDataForApp(app, tag: tagField.stringValue, options: hashOptions)
     }
-    saveMasterPass()
+    Keychain.saveMasterPass(passField.stringValue)
     hideDialog(self)
     guard let es = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState) else {return}
     KeyboardEmulator.replaceText(hash, eventSource: es)
-  }
-
-  func saveDataForApp(app: String) {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    let rememberTag = defaults.boolForKey("rememberTag")
-    let rememberOptions = defaults.boolForKey("rememberOptions")
-    guard rememberTag || rememberOptions else {return}
-
-    let dict = NSMutableDictionary()
-    if rememberTag {dict["tag"] = tagField.stringValue}
-    if rememberOptions {dict["options"] = hashOptions}
-    let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
-
-    if SecItemUpdate([
-      kSecClass as String: kSecClassGenericPassword as String,
-      kSecAttrService as String: "Hush Apps",
-      kSecAttrAccount as String: app,
-      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
-      ], [
-      kSecValueData as String: data,
-      ]) == noErr {return}
-
-    var attrs = [
-      kSecClass as String: kSecClassGenericPassword as String,
-      kSecAttrService as String: "Hush Apps",
-      kSecAttrAccount as String: app,
-      kSecAttrLabel as String: "Hush (\(app))",
-      kSecValueData as String: data,
-    ] as [String: AnyObject]
-    if defaults.boolForKey("synchronizeData") {
-      attrs[kSecAttrSynchronizable as String] = true
-      attrs[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
-    }
-    SecItemAdd(attrs, nil)
-  }
-  func loadOptionsForApp(app: String) -> (String?, HashOptions?) {
-    var result: AnyObject?
-    guard SecItemCopyMatching([
-      kSecClass as String: kSecClassGenericPassword as String,
-      kSecAttrService as String: "Hush Apps",
-      kSecAttrAccount as String: app,
-      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
-      kSecReturnData as String: true,
-      ], &result) == noErr,
-      let data = result as? NSData,
-      let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data) else {return (nil, nil)}
-
-    let tag = dict["tag"] as? String
-    let hashOptions = dict["options"] as? HashOptions
-    return (tag, hashOptions)
-  }
-
-  func saveMasterPass() {
-    guard NSUserDefaults.standardUserDefaults().boolForKey("rememberPass"),
-      let data = passField.stringValue.dataUsingEncoding(NSUTF8StringEncoding) else {return}
-
-    if SecItemUpdate([
-      kSecClass as String: kSecClassGenericPassword as String,
-      kSecAttrService as String: "Hush",
-      kSecAttrAccount as String: "master",
-      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
-    ], [
-      kSecValueData as String: data,
-    ]) == noErr {return}
-
-    var attrs = [
-      kSecClass as String: kSecClassGenericPassword as String,
-      kSecAttrService as String: "Hush",
-      kSecAttrAccount as String: "master",
-      kSecAttrLabel as String: "Hush",
-      kSecValueData as String: data as CFData,
-    ] as [String: AnyObject]
-    if NSUserDefaults.standardUserDefaults().boolForKey("synchronizeData") {
-      attrs[kSecAttrSynchronizable as String] = true
-      attrs[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
-    }
-    SecItemAdd(attrs, nil)
-  }
-  func loadMasterPass() -> String? {
-    var result: AnyObject?
-    guard SecItemCopyMatching([
-      kSecClass as String: kSecClassGenericPassword as String,
-      kSecAttrService as String: "Hush",
-      kSecAttrAccount as String: "master",
-      kSecAttrSynchronizable as String: kSecAttrSynchronizableAny as String,
-      kSecReturnData as String: true,
-      ], &result) == noErr,
-      let data = result as? NSData,
-      let pass = NSString(data: data, encoding: NSUTF8StringEncoding) else {return nil}
-    return pass as String
   }
 }
 
@@ -225,7 +123,7 @@ extension AppDelegate {
 
     let app = currentApp()
     if rememberTag || rememberOptions, let app = app {
-      let (tag, options) = loadOptionsForApp(app)
+      let (tag, options) = Keychain.loadDataForApp(app)
       if let tag = tag {
         tagField.stringValue = tag
       }
@@ -236,7 +134,7 @@ extension AppDelegate {
       }
     }
     if defaults.boolForKey("rememberPass"),
-      let pass = loadMasterPass() {
+      let pass = Keychain.loadMasterPass() {
       passField.stringValue = pass
     }
     if tagField.stringValue == "" && defaults.boolForKey("guessTag"), let app = app {
@@ -371,22 +269,10 @@ extension AppDelegate {
 
 extension AppDelegate {
   @IBAction func resetToDefaults(sender: AnyObject?) {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    hashOptions.length = defaults.integerForKey("length")
-    hashOptions.requireDigit = defaults.boolForKey("requireDigit")
-    hashOptions.requireSpecial = defaults.boolForKey("requireSpecial")
-    hashOptions.requireMixed = defaults.boolForKey("requireMixed")
-    hashOptions.onlyDigits = defaults.boolForKey("onlyDigits")
-    hashOptions.forbidSpecial = defaults.boolForKey("forbidSpecial")
+    hashOptions.setTo(HashOptions.fromDefaults())
   }
   @IBAction func updateDefaultsFromOptions(sender: AnyObject?) {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setBool(hashOptions.requireDigit, forKey: "requireDigit")
-    defaults.setBool(hashOptions.requireSpecial, forKey: "requireSpecial")
-    defaults.setBool(hashOptions.requireMixed, forKey: "requireMixed")
-    defaults.setBool(hashOptions.onlyDigits, forKey: "onlyDigits")
-    defaults.setBool(hashOptions.forbidSpecial, forKey: "forbidSpecial")
-    defaults.setInteger(hashOptions.length, forKey: "length")
+    hashOptions.saveDefaults()
   }
 
   @IBAction func updateOptions(sender: AnyObject?) {

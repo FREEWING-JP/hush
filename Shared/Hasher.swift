@@ -1,4 +1,8 @@
-import Cocoa
+#if os(iOS)
+  import UIKit
+#else
+  import Cocoa
+#endif
 
 @objc class HashOptions : NSObject, NSCoding {
   dynamic var length = 16
@@ -33,6 +37,26 @@ import Cocoa
     requireMixed = o.requireMixed
     forbidSpecial = o.forbidSpecial
     onlyDigits = o.onlyDigits
+  }
+
+  static func fromDefaults(defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()) -> HashOptions {
+    let options = HashOptions()
+    options.length = defaults.integerForKey("length")
+    options.requireDigit = defaults.boolForKey("requireDigit")
+    options.requireSpecial = defaults.boolForKey("requireSpecial")
+    options.requireMixed = defaults.boolForKey("requireMixed")
+    options.onlyDigits = defaults.boolForKey("onlyDigits")
+    options.forbidSpecial = defaults.boolForKey("forbidSpecial")
+    return options
+  }
+  func saveDefaults(defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setBool(requireDigit, forKey: "requireDigit")
+    defaults.setBool(requireSpecial, forKey: "requireSpecial")
+    defaults.setBool(requireMixed, forKey: "requireMixed")
+    defaults.setBool(onlyDigits, forKey: "onlyDigits")
+    defaults.setBool(forbidSpecial, forKey: "forbidSpecial")
+    defaults.setInteger(length, forKey: "length")
   }
 }
 
