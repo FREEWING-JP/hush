@@ -72,6 +72,11 @@ class ViewController: UITableViewController, UITextFieldDelegate {
     updateHash(self)
   }
 
+  @IBAction func bumpTag(sender: AnyObject) {
+    guard let tag = tagField.text else {return}
+    tagField.text = Hasher.bumpTag(tag)
+  }
+
   func getHash() -> String? {
     guard let tag = tagField.text,
       pass = passField.text else {return nil}

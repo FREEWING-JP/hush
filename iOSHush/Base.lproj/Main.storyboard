@@ -101,8 +101,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="o3D-M3-Tme">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o3D-M3-Tme">
+                                                    <rect key="frame" x="15" y="0.0" width="320" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
                                                     <connections>
@@ -111,11 +111,24 @@
                                                         <outlet property="delegate" destination="AZ8-FN-gXq" id="bt7-52-nRK"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbY-K1-wlS">
+                                                    <rect key="frame" x="335" y="0.0" width="40" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="dMr-Km-pQv"/>
+                                                    </constraints>
+                                                    <state key="normal" title="+"/>
+                                                    <connections>
+                                                        <action selector="bumpTag:" destination="AZ8-FN-gXq" eventType="touchUpInside" id="jLz-HM-08M"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="o3D-M3-Tme" firstAttribute="leading" secondItem="gyq-xf-WlW" secondAttribute="leading" constant="15" id="2L9-v6-lNC"/>
+                                                <constraint firstAttribute="bottom" secondItem="XbY-K1-wlS" secondAttribute="bottom" id="6GV-1e-tGR"/>
                                                 <constraint firstAttribute="bottom" secondItem="o3D-M3-Tme" secondAttribute="bottom" id="W1c-r2-4g5"/>
-                                                <constraint firstAttribute="trailing" secondItem="o3D-M3-Tme" secondAttribute="trailing" constant="15" id="a7F-0u-POf"/>
+                                                <constraint firstAttribute="trailing" secondItem="XbY-K1-wlS" secondAttribute="trailing" id="ZqE-w7-U5L"/>
+                                                <constraint firstItem="XbY-K1-wlS" firstAttribute="leading" secondItem="o3D-M3-Tme" secondAttribute="trailing" id="eEh-nl-TpY"/>
+                                                <constraint firstItem="XbY-K1-wlS" firstAttribute="top" secondItem="gyq-xf-WlW" secondAttribute="top" id="fFF-0K-VUN"/>
                                                 <constraint firstItem="o3D-M3-Tme" firstAttribute="top" secondItem="gyq-xf-WlW" secondAttribute="top" id="hIW-yU-olw"/>
                                             </constraints>
                                         </tableViewCellContentView>
