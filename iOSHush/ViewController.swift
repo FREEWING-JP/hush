@@ -47,9 +47,9 @@ class ViewController: UITableViewController, UITextFieldDelegate {
   }
 
   @IBAction func appChange(sender: AnyObject) {
-    guard let app = appField.text else {return}
+    guard let app = appField.text.map(Hasher.formatTag) else {return}
     let (tag, options) = Keychain.loadDataForApp(app)
-    tagField.text = tag ?? Hasher.formatTag(app)
+    tagField.text = tag ?? app
     if let opts = options {
       ViewController.configuredOptions = opts.copy() as! HashOptions
     }

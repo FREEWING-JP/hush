@@ -47,7 +47,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="App" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3JL-vD-LGB">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardType="alphabet" returnKeyType="next"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
                                                     <connections>
                                                         <action selector="appChange:" destination="AZ8-FN-gXq" eventType="editingChanged" id="0GK-p5-0AL"/>
                                                         <action selector="blurField:" destination="AZ8-FN-gXq" eventType="editingDidEnd" id="6xT-xu-SUU"/>
