@@ -18,6 +18,8 @@
 	<false/>
 	<key>rememberOptions</key>
 	<true/>
+	<key>rememberTag</key>
+	<true/>
 	<key>rememberPass</key>
 	<false/>
 	<key>revealTag</key>

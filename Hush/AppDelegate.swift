@@ -178,12 +178,7 @@ extension AppDelegate {
       base = name
     }
 
-    // just spaces
-    // return base.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
-
-    // kill EVERYTHING (except letters and numbers)
-    let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
-    return "".join(base.lowercaseString.componentsSeparatedByCharactersInSet(set))
+    return Hasher.formatTag(base)
   }
   func appFromURL(url: String) -> String? {
     guard var components = NSURL(string: url)?.host?.componentsSeparatedByString(".") else {return nil}

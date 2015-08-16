@@ -3,7 +3,9 @@ import UIKit
 @objc
 class ViewController: UITableViewController, UITextFieldDelegate {
   static var hashOptions: HashOptions = HashOptions.fromDefaults()
+  static var configuredOptions: HashOptions = hashOptions
 
+  @IBOutlet weak var appField: UITextField!
   @IBOutlet weak var tagField: UITextField!
   @IBOutlet weak var passField: UITextField!
   @IBOutlet weak var hashField: UITextField!
@@ -25,10 +27,10 @@ class ViewController: UITableViewController, UITextFieldDelegate {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     let field: UITextField
-    if let tag = tagField.text, pass = passField.text where !tag.isEmpty && pass.isEmpty {
+    if let app = appField.text, pass = passField.text where !app.isEmpty && pass.isEmpty {
       field = passField
     } else {
-      field = tagField
+      field = appField
     }
     field.enabled = true
     field.becomeFirstResponder()
@@ -44,13 +46,22 @@ class ViewController: UITableViewController, UITextFieldDelegate {
     field.enabled = false
   }
 
+  @IBAction func appChange(sender: AnyObject) {
+    guard let app = appField.text else {return}
+    let (tag, options) = Keychain.loadDataForApp(app)
+    tagField.text = tag ?? Hasher.formatTag(app)
+    if let opts = options {
+      ViewController.configuredOptions = opts.copy() as! HashOptions
+    }
+    ViewController.hashOptions.setTo(options ?? ViewController.configuredOptions)
+    updateHash(sender)
+  }
   @IBAction func updateHash(sender: AnyObject?) {
     hashField.text = getHash() ?? ""
     hashCell.accessoryType = UITableViewCellAccessoryType.None
   }
 
   func reset() {
-//    tagField.text = ""
     let defaults = NSUserDefaults.standardUserDefaults()
     if defaults.boolForKey("rememberPass"),
       let pass = Keychain.loadMasterPass() {
@@ -69,11 +80,11 @@ class ViewController: UITableViewController, UITextFieldDelegate {
 
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     switch textField {
-    case tagField:
+    case appField:
       passField.enabled = true
       passField.becomeFirstResponder()
-    case passField:
-      passField.resignFirstResponder()
+    case passField, tagField:
+      textField.resignFirstResponder()
       copyHash(textField)
     default: break
     }
@@ -83,11 +94,10 @@ class ViewController: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     guard let cell = tableView.cellForRowAtIndexPath(indexPath) else {return}
 
-    if indexPath.indexAtPosition(0) == 0 {
-      guard let field = cell.contentView.subviews.first as? UITextField else {return}
+    if let field = cell.viewWithTag(1) as? UITextField {
       field.enabled = true
       field.becomeFirstResponder()
-    } else if indexPath.indexAtPosition(1) == 0 {
+    } else if cell.viewWithTag(2) != nil {
       copyHash(cell)
     } else {
       return
@@ -105,6 +115,11 @@ class ViewController: UITableViewController, UITextFieldDelegate {
     if defaults.boolForKey("rememberPass"),
       let pass = passField.text {
         Keychain.saveMasterPass(pass)
+    }
+    if defaults.boolForKey("rememberOptions"),
+      let app = appField.text,
+      let tag = tagField.text {
+        Keychain.saveDataForApp(Hasher.formatTag(app), tag: tag, options: ViewController.hashOptions)
     }
   }
 

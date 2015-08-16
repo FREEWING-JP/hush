@@ -26,6 +26,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>Tag for Each App</string>
+			<key>Key</key>
+			<string>rememberTag</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>Master Passphrase</string>
 			<key>Key</key>
 			<string>rememberPass</string>

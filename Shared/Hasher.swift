@@ -156,4 +156,12 @@ class Hasher : NSObject {
     // }
   }
 
+  static func formatTag(base: String) -> String {
+    // just spaces
+    // return base.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: " ")
+
+    // kill EVERYTHING (except letters and numbers)
+    let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
+    return "".join(base.lowercaseString.componentsSeparatedByCharactersInSet(set))
+  }
 }

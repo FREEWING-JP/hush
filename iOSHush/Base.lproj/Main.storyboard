@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pbU-DC-gKV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pbU-DC-gKV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
@@ -44,11 +44,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3JL-vD-LGB">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="App" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3JL-vD-LGB">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardType="alphabet" returnKeyType="next"/>
                                                     <connections>
+                                                        <action selector="appChange:" destination="AZ8-FN-gXq" eventType="editingChanged" id="0GK-p5-0AL"/>
                                                         <action selector="blurField:" destination="AZ8-FN-gXq" eventType="editingDidEnd" id="6xT-xu-SUU"/>
                                                         <action selector="updateHash:" destination="AZ8-FN-gXq" eventType="editingChanged" id="Kh2-Ld-PqT"/>
                                                         <outlet property="delegate" destination="AZ8-FN-gXq" id="1ZQ-0S-558"/>
@@ -70,7 +71,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Passphrase" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-7b-yQL">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Passphrase" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-7b-yQL">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -93,14 +94,40 @@
                             </tableViewSection>
                             <tableViewSection footerTitle="Tap on the hash or press Done to copy it." id="6qK-De-2uv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="w0S-4z-TkF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pvq-m9-ggA">
                                         <rect key="frame" x="0.0" y="207" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pvq-m9-ggA" id="gyq-xf-WlW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="o3D-M3-Tme">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                                    <connections>
+                                                        <action selector="blurField:" destination="AZ8-FN-gXq" eventType="editingDidEnd" id="tjr-4n-QPQ"/>
+                                                        <action selector="updateHash:" destination="AZ8-FN-gXq" eventType="editingChanged" id="DRB-Ot-iGq"/>
+                                                        <outlet property="delegate" destination="AZ8-FN-gXq" id="bt7-52-nRK"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="o3D-M3-Tme" firstAttribute="leading" secondItem="gyq-xf-WlW" secondAttribute="leading" constant="15" id="2L9-v6-lNC"/>
+                                                <constraint firstAttribute="bottom" secondItem="o3D-M3-Tme" secondAttribute="bottom" id="W1c-r2-4g5"/>
+                                                <constraint firstAttribute="trailing" secondItem="o3D-M3-Tme" secondAttribute="trailing" constant="15" id="a7F-0u-POf"/>
+                                                <constraint firstItem="o3D-M3-Tme" firstAttribute="top" secondItem="gyq-xf-WlW" secondAttribute="top" id="hIW-yU-olw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="w0S-4z-TkF">
+                                        <rect key="frame" x="0.0" y="251" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w0S-4z-TkF" id="dOO-Qe-ip9">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Hash" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JNg-nB-j2I">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Hash" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JNg-nB-j2I">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -119,7 +146,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5DP-WH-5Ew" style="IBUITableViewCellStyleDefault" id="Dys-1f-OQz">
-                                        <rect key="frame" x="0.0" y="251" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="295" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dys-1f-OQz" id="QhR-SU-hV5">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -148,10 +175,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Hush" id="CvK-Wy-2hj"/>
                     <connections>
+                        <outlet property="appField" destination="3JL-vD-LGB" id="UvR-AI-U2i"/>
                         <outlet property="hashCell" destination="w0S-4z-TkF" id="zp9-Qy-DdT"/>
                         <outlet property="hashField" destination="JNg-nB-j2I" id="XTR-Me-m3A"/>
                         <outlet property="passField" destination="Hlx-7b-yQL" id="pTh-J7-JSp"/>
-                        <outlet property="tagField" destination="3JL-vD-LGB" id="BrV-rF-fZf"/>
+                        <outlet property="tagField" destination="o3D-M3-Tme" id="7t6-4j-JgC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixX-el-r9F" userLabel="First Responder" sceneMemberID="firstResponder"/>
