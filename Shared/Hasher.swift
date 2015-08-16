@@ -164,4 +164,15 @@ class Hasher : NSObject {
     let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
     return "".join(base.lowercaseString.componentsSeparatedByCharactersInSet(set))
   }
+  static func bumpTag(tag: String) -> String {
+    var components = tag.componentsSeparatedByString(":")
+    if components.count > 1 {
+      let last = components.removeLast()
+      if let n = Int(last) {
+        components.append(String(n + 1))
+        return ":".join(components)
+      }
+    }
+    return "\(tag):1"
+  }
 }

@@ -291,6 +291,13 @@ extension AppDelegate : NSTextFieldDelegate {
 }
 
 extension AppDelegate {
+  @IBAction func bumpTag(sender: AnyObject?) {
+    tagField.stringValue = Hasher.bumpTag(tagField.stringValue)
+    updateHash(sender)
+  }
+}
+
+extension AppDelegate {
   override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
     if context == &defaultsContext, let keyPath = keyPath {
       if (UIDefaults.contains(keyPath)) {
