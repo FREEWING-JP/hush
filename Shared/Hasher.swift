@@ -4,7 +4,7 @@
   import Cocoa
 #endif
 
-@objc class HashOptions : NSObject, NSCoding {
+@objc class HashOptions : NSObject, NSCopying, NSCoding {
   dynamic var length = 16
   dynamic var requireDigit = true
   dynamic var requireSpecial = true
@@ -28,6 +28,28 @@
     aCoder.encodeBool(requireMixed, forKey: "requireMixed")
     aCoder.encodeBool(forbidSpecial, forKey: "forbidSpecial")
     aCoder.encodeBool(onlyDigits, forKey: "onlyDigits")
+  }
+  required init?(json: Dictionary<String, AnyObject>) {
+    if let x = json["length"] as? Int {length = x}
+    if let x = json["requireDigit"] as? Bool {requireDigit = x}
+    if let x = json["requireSpecial"] as? Bool {requireSpecial = x}
+    if let x = json["requireMixed"] as? Bool {requireMixed = x}
+    if let x = json["forbidSpecial"] as? Bool {forbidSpecial = x}
+    if let x = json["onlyDigits"] as? Bool {onlyDigits = x}
+  }
+  func toJSON() -> Dictionary<String, AnyObject> {return [
+    "length": length,
+    "requireDigit": requireDigit,
+    "requireSpecial": requireSpecial,
+    "requireMixed": requireMixed,
+    "forbidSpecial": forbidSpecial,
+    "onlyDigits": onlyDigits,
+  ]}
+
+  func copyWithZone(zone: NSZone) -> AnyObject {
+    let options = HashOptions()
+    options.setTo(self)
+    return options
   }
 
   func setTo(o: HashOptions) {

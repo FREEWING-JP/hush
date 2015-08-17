@@ -1,6 +1,5 @@
 import Cocoa
 
-func print2(x: AnyObject?) {print(x)}
 extension NSTextField {
   var secure: Bool {
     get {return cell?.secure ?? false}

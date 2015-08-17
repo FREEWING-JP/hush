@@ -11,9 +11,12 @@
 		A1055C821B7E545C00BF53BA /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1055C811B7E545C00BF53BA /* Defaults.plist */; };
 		A1055C831B7E546200BF53BA /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1055C811B7E545C00BF53BA /* Defaults.plist */; };
 		A1055C851B7E550500BF53BA /* OSXDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1055C841B7E550500BF53BA /* OSXDefaults.plist */; };
+		A10CAB0D1B817AC600BB281C /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCD1B6422A90016AF15 /* Hasher.swift */; };
+		A10CAB0E1B817AC600BB281C /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1734E4F1B7EA0BE0005C9C5 /* Keychain.swift */; };
+		A10CAB0F1B817ACB00BB281C /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCD1B6422A90016AF15 /* Hasher.swift */; };
+		A10CAB101B817ACB00BB281C /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1734E4F1B7EA0BE0005C9C5 /* Keychain.swift */; };
 		A13BFCCA1B6381900016AF15 /* NSTextField+secure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCC91B6381900016AF15 /* NSTextField+secure.swift */; };
 		A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCB1B6385700016AF15 /* NSButton+checked.swift */; };
-		A13BFCCE1B6422A90016AF15 /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCD1B6422A90016AF15 /* Hasher.swift */; };
 		A13BFCD01B6425180016AF15 /* KeyboardEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCF1B6425180016AF15 /* KeyboardEmulator.swift */; };
 		A14B7E851B7E487E008C13D3 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14B7E841B7E487E008C13D3 /* OptionsViewController.swift */; };
 		A15DB1891B64A098009494AC /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15DB1881B64A098009494AC /* ServiceManagement.framework */; };
@@ -22,15 +25,12 @@
 		A1677A2E1B64A20600B5C8E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1677A2C1B64A20600B5C8E7 /* MainMenu.xib */; };
 		A1677A521B64A2B400B5C8E7 /* HushStartup.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = A1677A261B64A20600B5C8E7 /* HushStartup.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1734E4E1B7E9E000005C9C5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A1734E4D1B7E9E000005C9C5 /* Settings.bundle */; };
-		A1734E501B7EA0BE0005C9C5 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1734E4F1B7EA0BE0005C9C5 /* Keychain.swift */; };
-		A1734E511B7EA0BE0005C9C5 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1734E4F1B7EA0BE0005C9C5 /* Keychain.swift */; };
 		A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60D21B61BA690082D157 /* AppDelegate.swift */; };
 		A18A60D71B61BA690082D157 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18A60D61B61BA690082D157 /* Images.xcassets */; };
 		A18A60E61B61BA690082D157 /* HushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18A60E51B61BA690082D157 /* HushTests.swift */; };
 		A18A60F11B61BFBC0082D157 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18A60F01B61BFBC0082D157 /* Main.xib */; };
 		A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC24B1B634DE700366CDA /* CGEventFlags_.swift */; };
 		A192AE431B7E222D00B8C716 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A192AE421B7E222D00B8C716 /* ViewController.swift */; };
-		A192AE451B7E346C00B8C716 /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13BFCCD1B6422A90016AF15 /* Hasher.swift */; };
 		A1E9BA781B64ADEE0086536B /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9BA771B64ADEE0086536B /* HotKey.swift */; };
 		A1F2E0021B7D827700CA0C92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2E0011B7D827700CA0C92 /* AppDelegate.swift */; };
 		A1F2E0071B7D827700CA0C92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F2E0051B7D827700CA0C92 /* Main.storyboard */; };
@@ -237,10 +237,10 @@
 		A18A60D01B61BA690082D157 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A18A817F1B62C51300F21A2F /* Hush-Bridging-Header.h */,
 				A1FF80581B6484B2005C5B62 /* Assets.sketch */,
 				A18A60D11B61BA690082D157 /* Info.plist */,
 				A1055C841B7E550500BF53BA /* OSXDefaults.plist */,
+				A18A817F1B62C51300F21A2F /* Hush-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -569,12 +569,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10CAB0D1B817AC600BB281C /* Hasher.swift in Sources */,
+				A10CAB0E1B817AC600BB281C /* Keychain.swift in Sources */,
 				A18A60D31B61BA690082D157 /* AppDelegate.swift in Sources */,
 				A13BFCCA1B6381900016AF15 /* NSTextField+secure.swift in Sources */,
 				A13BFCD01B6425180016AF15 /* KeyboardEmulator.swift in Sources */,
 				A13BFCCC1B6385700016AF15 /* NSButton+checked.swift in Sources */,
-				A13BFCCE1B6422A90016AF15 /* Hasher.swift in Sources */,
-				A1734E501B7EA0BE0005C9C5 /* Keychain.swift in Sources */,
 				A18AC24C1B634DE700366CDA /* CGEventFlags_.swift in Sources */,
 				A1E9BA781B64ADEE0086536B /* HotKey.swift in Sources */,
 			);
@@ -592,12 +592,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10CAB0F1B817ACB00BB281C /* Hasher.swift in Sources */,
+				A10CAB101B817ACB00BB281C /* Keychain.swift in Sources */,
 				A1055C7E1B7E503E00BF53BA /* LengthViewController.swift in Sources */,
-				A192AE451B7E346C00B8C716 /* Hasher.swift in Sources */,
 				A14B7E851B7E487E008C13D3 /* OptionsViewController.swift in Sources */,
 				A192AE431B7E222D00B8C716 /* ViewController.swift in Sources */,
 				A1F2E0021B7D827700CA0C92 /* AppDelegate.swift in Sources */,
-				A1734E511B7EA0BE0005C9C5 /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +788,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hush/Hush-Bridging-Header.h";
@@ -811,6 +812,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.nathan.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hush/Hush-Bridging-Header.h";
@@ -871,6 +873,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHush;
+				PRODUCT_MODULE_NAME = Hush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -894,6 +897,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.nathan.iOSHush;
+				PRODUCT_MODULE_NAME = Hush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
