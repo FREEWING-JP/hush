@@ -3,8 +3,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    let appPath = NSBundle.mainBundle().bundlePath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent
-    if let executableURL = NSBundle(path: appPath)?.executableURL {
+    let appURL = NSBundle.mainBundle().bundleURL.URLByDeletingLastPathComponent?.URLByDeletingLastPathComponent?.URLByDeletingLastPathComponent?.URLByDeletingLastPathComponent
+    if let appURL = appURL, executableURL = NSBundle(URL: appURL)?.executableURL {
       do {
         try NSWorkspace.sharedWorkspace().launchApplicationAtURL(executableURL, options: NSWorkspaceLaunchOptions.Default, configuration: [
           NSWorkspaceLaunchConfigurationArguments: ["autostart"],

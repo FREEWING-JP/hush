@@ -56,7 +56,7 @@ extension AppDelegate {
     optionsHeight = optionsBox.contentView!.frame.height
     optionsHeightConstraint = NSLayoutConstraint(item: optionsBox.contentView!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: optionsHeight)
     optionsSideConstraint = NSLayoutConstraint(item: optionsBox, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: window.contentView, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 20)
-    self.window.contentView.addConstraint(optionsHeightConstraint)
+    self.window.contentView?.addConstraint(optionsHeightConstraint)
 
     hotKey = HotKey.register(UInt32(kVK_ANSI_H), modifiers: UInt32(cmdKey|optionKey|controlKey), block: {
       self.showDialog(self)
@@ -145,7 +145,7 @@ extension AppDelegate {
       let scr = NSScreen.mainScreen()?.visibleFrame,
       let old = window.screen?.visibleFrame {
         let win = window.frame
-        window.setFrame(win.rectByOffsetting(dx: scr.minX - old.minX, dy: scr.minX - old.minX), display: false)
+        window.setFrame(win.offsetBy(dx: scr.minX - old.minX, dy: scr.minX - old.minX), display: false)
     }
     window.makeFirstResponder(tagField.stringValue == "" ? tagField : passField)
     window.makeKeyAndOrderFront(sender)
@@ -242,7 +242,7 @@ extension AppDelegate {
   func updateOptionsConstraints(animate: Bool) {
     if !optionsVisible {
       optionsBox.contentView?.removeConstraint(optionsBottomConstraint)
-      window.contentView.removeConstraint(optionsSideConstraint)
+      window.contentView?.removeConstraint(optionsSideConstraint)
     }
     let animator: (NSLayoutConstraint) -> NSLayoutConstraint = animate ? {$0.animator()} : {$0}
     animator(optionsHeightConstraint).constant = optionsVisible ? optionsHeight : 0
@@ -250,7 +250,7 @@ extension AppDelegate {
     animator(optionsMarginBottomConstraint).constant = optionsVisible ? 20 : 4
     if (optionsVisible) {
       optionsBox.hidden = false
-      window.contentView.addConstraint(optionsSideConstraint)
+      window.contentView?.addConstraint(optionsSideConstraint)
     }
   }
   func updateOptionsConstraintsAfterAnimation() {
@@ -314,7 +314,7 @@ extension AppDelegate {
   }
 
   func updateLoginItem() {
-    SMLoginItemSetEnabled("io.github.nathan.HushStartup", NSUserDefaults.standardUserDefaults().boolForKey("enableLoginItem") ? 1 : 0)
+    SMLoginItemSetEnabled("io.github.nathan.HushStartup", NSUserDefaults.standardUserDefaults().boolForKey("enableLoginItem"))
   }
 
   func updateSecurityButton() {

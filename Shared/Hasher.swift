@@ -100,7 +100,7 @@ class Hasher : NSObject {
     guard let b64 = NSString(data: outData.base64EncodedDataWithOptions([]), encoding: NSUTF8StringEncoding) as? String else {return nil}
 
     let seed = b64.utf8.reduce(0) {$0 + Int($1)} - (b64.characters.last == "=" ? Int("=".utf8.first!) : 0)
-    let str = b64[b64.startIndex..<advance(b64.startIndex, options.length)]
+    let str = b64[b64.startIndex..<b64.startIndex.advancedBy(options.length)]
     var utf = Array(str.utf8)
 
     if options.onlyDigits {
@@ -184,7 +184,7 @@ class Hasher : NSObject {
 
     // kill EVERYTHING (except letters and numbers)
     let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
-    return "".join(base.lowercaseString.componentsSeparatedByCharactersInSet(set))
+    return base.lowercaseString.componentsSeparatedByCharactersInSet(set).joinWithSeparator("")
   }
   static func bumpTag(tag: String) -> String {
     var components = tag.componentsSeparatedByString(":")
@@ -192,7 +192,7 @@ class Hasher : NSObject {
       let last = components.removeLast()
       if let n = Int(last) {
         components.append(String(n + 1))
-        return ":".join(components)
+        return components.joinWithSeparator(":")
       }
     }
     return "\(tag):1"
